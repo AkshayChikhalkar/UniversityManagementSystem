@@ -64,3 +64,19 @@
 * Frequency of occurence: Very regularly, up to multiple requests per minute, long pauses of no interaction also possible
 * Open issues:
   * Booking of multiple rooms at once
+
+# User story details
+
+1. As a *Student*, I want *to book a room*, so that *I have a place to work*.
+   * A Student is only allowed to book at most one room at any given time
+   * Students can only book rooms for the current time and are not able to reserve them for later.
+   * A student is identified by their university id
+   * Bookings by students do not have an ending time specified
+   * Students are able to terminate their bookings manually
+   * Bookings are terminated automatically, if a booking by an employee starts.
+
+2. As a *Guest*, I want *to have navigational instructions*, so that *I am able to locate a room*.
+   * User Story is also valid for students and university employees
+   * Navigation is realized trough  building schematics, aswell as indoor and outdoor maps
+   * Other points of interest (parking spots, water fountains) are out of scope and might be part of standalone user stories
+   * Users do not need to be verified for navigation
