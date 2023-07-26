@@ -32,11 +32,11 @@
 
 \begin{document}
 
-\title{Title\\}
+\title{Title\\} %TODO
 
-\author{\IEEEauthorblockN{Authors}\\
+\author{\IEEEauthorblockN{Authors}\\ %TODO
 \IEEEauthorblockA{\textit{Department of Electrical Engineering and Computer Science} \\
-\textit{Technische Hochschule Ostwestfalen-Lippe University of Applied Sciences and Arts}\\
+\textit{Technische Hochschule Ostwestfalen-Lippe, University of Applied Sciences and Arts}\\
 Lemgo, Germany \\
 akshay.chikhalkar@stud.th-owl.de, sean.nagel@stud.th-owl.de, kassabji.bassam@stud.th-owl.de}
 
@@ -69,79 +69,140 @@ akshay.chikhalkar@stud.th-owl.de, sean.nagel@stud.th-owl.de, kassabji.bassam@stu
 \newpage
 \section{Introduction}
 
+\section{Use cases and user stories}
+
+To further identify the desired functionality of the University Room Management System, two use cases and three user stories were identified and formulated.
+One use case and two user stories will be described in more detail in this section.
+
+The identified use cases are \emph{Searching and booking a room} and \emph{Getting navigation instructions to a room}.
+For the use case \emph{Searching and booking a room} a use case specification was created. The specification is shown in \tablename~\ref{tab:usecasespec}.
+
+%TODO: Make some explenations for the use case specification
+
+\begin{table}[tb]
+	\centering
+	\begin{tabular}{|l|l|}
+		\hline
+		Name                        & Searching and booking a room \\ \hline
+		Scope                       & University Room Management System \\ \hline
+		Level                       & User goal \\ \hline
+		Primary Actor               & Student, Professor or other university staff \\ \hline
+		Stakeholders / interests    & \begin{tabular}[t]{@{}l@{}}Other members of the university (students, professors, other staff)\\ University / university management\end{tabular}\\ \hline
+		Preconditions               & User is in possession of a valid university card and has a user account \\ \hline
+		Postconditions              & Status of the rooms in the room database is updated \\ \hline
+		Main success scenario       & \begin{tabular}[t]{@{}l@{}}
+				1. User searches a room via a room number\\
+				2. System returns a list of rooms fulfilling the search query\\
+				3. User selects a room from the list\\
+				4. System shows detailed information about the selected room\\
+				5. User books the room\\
+				6. System updates booking status of the room\\
+				7. System shows booking information and confirmation
+			\end{tabular} \\ \hline
+		Extensions                  & \begin{tabular}[t]{@{}l@{}}
+			1a. User searches room via room properties\\
+			\: 1. User opens page to filter specific properties\\
+			\: 2. User selects room requirements and confirms\\
+			2a. No room fulfilling the search criteria exists\\
+			\: 1. System shows message: ``No rooms found''\\
+			\: 2. System presents rooms similar to the search query\\
+			5a. Room is already booked\\
+			\: 1. System shows message: ``Room is already booked''\\
+			\: 2. System suggests a list of similar rooms\\
+			5b. User already booked the allowed maximum amount of rooms\\
+			\: 1. System shows message: ``You cannot book another room''\\
+			\: 2. System shows list of rooms already booked by the user\\
+			5c. User books room according to a schedule (for future use)\\
+			\: 1. System presents a day and time picker\\
+			\: 2. User selects day of week and time\\
+			\: 3. System asks for the frequency of the booking\\
+			\: 4. User selects how often booking should be repeated\\
+			\: 5. System books room for all selected time slots\\ 
+			\:\: 5a. Room is not available in all time slots\\
+			\:\:\: 1. System shows message: ``Room is not available at \textless{}DAY / TIME\textgreater{}''\\
+			\:\:\: 2. System provides alternative time slots and rooms\\
+			\:\:\: 3. User selects alternatives\end{tabular} \\ \hline
+		Special requirements        & \begin{tabular}[t]{@{}l@{}}Stable database\\ Simple UI design\\ Fast search\end{tabular} \\ \hline
+		Technology / data variation & Available via a terminal at the university or via a web app \\ \hline
+		Frequency of occurrence     & \begin{tabular}[t]{@{}l@{}}Very regularly, up to multiple requests per minute at most active times\\ Long pauses without interaction also likely\end{tabular} \\ \hline
+		Open issues                 & Booking of multiple rooms at once \\ \hline
+	\end{tabular}
+	\caption{Use case specification for the use case \emph{Searching and booking a room}}
+	\label{tab:usecasespec}
+\end{table}
 	
-\section{Evaluation methods}
-
-    Software usability can be evaluated using various methods, such as usability testing, heuristic evaluation, cognitive walkthrough, expert review, survey/questionnaire, user interviews, and field studies \cite{sauro2012standardized}. Usability testing involves participants performing tasks while being observed by researchers to identify usability issues and gather feedback. Heuristic evaluation involves a group of experts evaluating the software based on established usability principles \cite{rubin2008handbook}. Cognitive walkthrough involves evaluators taking the perspective of users and walking through the steps required to complete a task to identify potential usability issues \cite{albert2013measuring}. Survey/questionnaire involves users providing feedback on their experience using the software through a series of prompts. User interviews involve asking users open-ended questions about their experience with the software to gather detailed feedback. Field studies involve observing users in their natural environment while using the software to identify usability issues \cite{sauro2016quantifying}.
-
-    Each evaluation method has its own strengths and weaknesses, and the choice of method depends on factors such as the stage of development, evaluation goals, and available resources. Combining multiple methods can provide a more comprehensive understanding of software usability \cite{hartson2012ux}. For this particular study, heuristic evaluation, usability testing and user experience questionnaire are being used.
-
-	\subsection{Heuristic Evaluation}
-        Heuristic evaluation is a method used to systematically evaluate the usability of a user interface or product by a small group of evaluators \cite{nielsen1994heuristic}. These evaluators consist of individuals with relevant experience and expertise in usability, interaction design, and related fields. The evaluation process involves examining the interface against a set of predefined usability heuristics or guidelines that have been established through research and experience \cite{nielsen1994heuristic}.
-
-        During the evaluation process, the evaluators identify any usability issues that violate the established heuristics and may provide recommendations to improve the interface's usability. This evaluation can be conducted at various stages of the design process, ranging from early wireframes to the final product.
-        
-        Heuristic evaluation offers a quick and cost-effective way to identify usability issues early on and provide feedback to improve the product's design \cite{molich1990improving}. This method can be useful in improving the usability of a product and ensuring a positive user experience.
-        
-        The evaluation of usability often involves the use of heuristic principles or guidelines that are established based on research and experience. Ten commonly used heuristic principles for evaluating usability are \cite{nielsen2005ten}:
-
-        \begin{enumerate}
-            \item Visibility of system status: The system should provide appropriate feedback within a reasonable amount of time to keep the user informed about what is happening.
-            \item Match between system and the real world: The system should use words, phrases, and concepts that are familiar to the user, and follow real-world conventions.
-            \item User control and freedom: Users should be provided with options to easily reverse actions and resume tasks.
-            \item Consistency and standards: The system should follow platform conventions, and avoid confusing users with different words, situations, or actions.
-            \item Error prevention: The system should be designed to prevent serious user mistakes by putting up constraints or barriers.
-            \item Recognition rather than recall: The user should not have to remember information from one part of the interface to another, and objects, actions, and options should be visible.
-            \item Flexibility and efficiency of use: The system should cater to both experienced and novice users, and allow the user to tailor frequent actions and automate repetitive tasks.
-            \item Aesthetic and minimalist design: The interface should prioritize important information, and avoid containing irrelevant or rarely needed information.
-            \item Help users recognize, diagnose, and recover from errors: Error messages should be expressed in plain language and clearly indicate the problem and steps to resolve it.    
-            \item Help and documentation: The system should include documentation to help users understand features and capabilities, but the system should be designed in such a way that documentation is not needed to complete tasks.
-        \end{enumerate}
-
-        The use of these heuristic principles can help designers and evaluators identify usability issues and improve the overall user experience of a software application \cite{nielsen1994heuristic}.
-
-    \subsection{Usability Testing}
-        
-        \subsubsection{User profiles}\hfill
-
-            In the context of software usability, a user profile refers to a detailed depiction of the characteristics that define the typical or intended user for a specific software system \cite{molich1990improving}. This may include the user's demographic information, educational background, professional role, experience level, and any other pertinent factors that may influence their interaction with the software \cite{molich1990improving}.
-
-            Creating a user profile is a crucial aspect of software usability design and evaluation, as it enables developers and designers to gain a better understanding of their target users' requirements and needs. By taking into account the user profile, designers can ensure that the software is customized to meet the specific needs and preferences of its intended users\cite{rubin2008handbook}.
-
-            For example, if the target users are elderly adults, the software design may need to consider their age-related declines in vision and motor abilities, and incorporate features such as larger buttons and clearer visual cues. Similarly, if the intended users lack technical expertise, the software design may need to be more intuitive, with less jargon and technical terms \cite{virzi1992refining}.
-
-            User profiles can be created through a variety of research methods, such as user surveys, interviews, and observations. Once established, user profiles can inform the design and development of software, as well as serve as a basis for evaluating its usability through user testing and other assessment techniques \cite{albert2013measuring}.
-
-        \subsubsection{User sudy}\hfill
-
-            The study comprised seven distinct in-person tasks that were performed on an iPad Air 11". These tasks included logging in, changing language and theme settings, retrieving specific information, and performing a crane origami.
-
-            The primary aim of the study was to evaluate the usability of the iOS app/player from the users' perspective. To achieve this goal, the study employed the in-person tasks to observe user behavior and gather feedback.
-            
-            The study sought to identify any usability issues or areas for improvement in the app/player. These findings could then be utilized to enhance the app/player in future updates.
-                
-    \subsection{User Experience Questionnaire}
-    
-        The User Experience Questionnaire is a standardized survey-based method used to evaluate the subjective experience of a user when interacting with a product, system, or service \cite{brooke1996sus}. The UEQ questionnaire is available online at www.ueq-online.org, and it is widely used in both the software industry and academia to assess the user experience of software applications.
-
-        The UEQ comprises 26 items that are designed to measure six key dimensions of user experience: attractiveness, perspicuity, efficiency, dependability, stimulation, and novelty \cite{hassenzahl2006user}. Each of these dimensions is assessed by four items, resulting in a total of 24 items, with an additional two items used to evaluate overall user experience and the user's willingness to recommend the software to others \cite{laugwitz2008construction}.
-
-        The six dimensions of user experience that are evaluated by the UEQ are defined as follows \cite{hassenzahl2003attrakdiff}:
-
-        \begin{enumerate}
-            \item	Attractiveness: Refers to the aesthetic appeal of the software and its visual design. This includes factors such as the use of color, typography, and graphic elements.
-            \item	Perspicuity: Refers to the clarity and simplicity of the software's interface and its ease of use. This includes factors such as the organization of information and the consistency of design elements.
-            \item	Efficiency: Refers to the ease and speed with which users can accomplish their goals using the software. This includes factors such as the speed of response and the availability of shortcuts.
-            \item	Dependability: Refers to the reliability and consistency of the software's performance. This includes factors such as error handling and system stability.
-            \item	Stimulation: Refers to the degree to which the software engages and motivates users. This includes factors such as the use of multimedia elements and interactive features.
-            \item	Novelty: Refers to the degree to which the software offers new or innovative features or functions. This includes factors such as the use of cutting-edge technology and unique design elements.
-        \end{enumerate}
-        
-        The UEQ questionnaire utilizes a 7-point Likert scale to rate each of its 27 items, with 1 representing strong disagreement and 7 indicating strong agreement. The two additional items used to evaluate overall user experience and willingness to recommend the software to others are also rated on the same 7-point scale \cite{laugwitz2008construction}.
-
-        The UEQ can be administered either online or in person, and is commonly used in conjunction with other usability testing techniques, such as heuristic evaluation or usability testing. The results of the UEQ can be leveraged to pinpoint areas of strength and weakness in the software's user experience, which can inform future design decisions. The UEQ is demonstrated to possess high levels of reliability and validity in measuring user experience across a range of software contexts \cite{hassenzahl2006user}.
-
-        Through the use of the UEQ to evaluate software usability, designers and developers can gain valuable insights into the user experience, identify opportunities for improvement, and make informed design decisions based on data. This approach can result in software applications that are more user-friendly, efficient, and effective, ultimately leading to higher levels of user satisfaction and improved business outcomes \cite{brooke1996sus}.
+%\section{Evaluation methods}
+%
+%    Software usability can be evaluated using various methods, such as usability testing, heuristic evaluation, cognitive walkthrough, expert review, survey/questionnaire, user interviews, and field studies \cite{sauro2012standardized}. Usability testing involves participants performing tasks while being observed by researchers to identify usability issues and gather feedback. Heuristic evaluation involves a group of experts evaluating the software based on established usability principles \cite{rubin2008handbook}. Cognitive walkthrough involves evaluators taking the perspective of users and walking through the steps required to complete a task to identify potential usability issues \cite{albert2013measuring}. Survey/questionnaire involves users providing feedback on their experience using the software through a series of prompts. User interviews involve asking users open-ended questions about their experience with the software to gather detailed feedback. Field studies involve observing users in their natural environment while using the software to identify usability issues \cite{sauro2016quantifying}.
+%
+%    Each evaluation method has its own strengths and weaknesses, and the choice of method depends on factors such as the stage of development, evaluation goals, and available resources. Combining multiple methods can provide a more comprehensive understanding of software usability \cite{hartson2012ux}. For this particular study, heuristic evaluation, usability testing and user experience questionnaire are being used.
+%
+%	\subsection{Heuristic Evaluation}
+%        Heuristic evaluation is a method used to systematically evaluate the usability of a user interface or product by a small group of evaluators \cite{nielsen1994heuristic}. These evaluators consist of individuals with relevant experience and expertise in usability, interaction design, and related fields. The evaluation process involves examining the interface against a set of predefined usability heuristics or guidelines that have been established through research and experience \cite{nielsen1994heuristic}.
+%
+%        During the evaluation process, the evaluators identify any usability issues that violate the established heuristics and may provide recommendations to improve the interface's usability. This evaluation can be conducted at various stages of the design process, ranging from early wireframes to the final product.
+%        
+%        Heuristic evaluation offers a quick and cost-effective way to identify usability issues early on and provide feedback to improve the product's design \cite{molich1990improving}. This method can be useful in improving the usability of a product and ensuring a positive user experience.
+%        
+%        The evaluation of usability often involves the use of heuristic principles or guidelines that are established based on research and experience. Ten commonly used heuristic principles for evaluating usability are \cite{nielsen2005ten}:
+%
+%        \begin{enumerate}
+%            \item Visibility of system status: The system should provide appropriate feedback within a reasonable amount of time to keep the user informed about what is happening.
+%            \item Match between system and the real world: The system should use words, phrases, and concepts that are familiar to the user, and follow real-world conventions.
+%            \item User control and freedom: Users should be provided with options to easily reverse actions and resume tasks.
+%            \item Consistency and standards: The system should follow platform conventions, and avoid confusing users with different words, situations, or actions.
+%            \item Error prevention: The system should be designed to prevent serious user mistakes by putting up constraints or barriers.
+%            \item Recognition rather than recall: The user should not have to remember information from one part of the interface to another, and objects, actions, and options should be visible.
+%            \item Flexibility and efficiency of use: The system should cater to both experienced and novice users, and allow the user to tailor frequent actions and automate repetitive tasks.
+%            \item Aesthetic and minimalist design: The interface should prioritize important information, and avoid containing irrelevant or rarely needed information.
+%            \item Help users recognize, diagnose, and recover from errors: Error messages should be expressed in plain language and clearly indicate the problem and steps to resolve it.    
+%            \item Help and documentation: The system should include documentation to help users understand features and capabilities, but the system should be designed in such a way that documentation is not needed to complete tasks.
+%        \end{enumerate}
+%
+%        The use of these heuristic principles can help designers and evaluators identify usability issues and improve the overall user experience of a software application \cite{nielsen1994heuristic}.
+%
+%    \subsection{Usability Testing}
+%        
+%        \subsubsection{User profiles}\hfill
+%
+%            In the context of software usability, a user profile refers to a detailed depiction of the characteristics that define the typical or intended user for a specific software system \cite{molich1990improving}. This may include the user's demographic information, educational background, professional role, experience level, and any other pertinent factors that may influence their interaction with the software \cite{molich1990improving}.
+%
+%            Creating a user profile is a crucial aspect of software usability design and evaluation, as it enables developers and designers to gain a better understanding of their target users' requirements and needs. By taking into account the user profile, designers can ensure that the software is customized to meet the specific needs and preferences of its intended users\cite{rubin2008handbook}.
+%
+%            For example, if the target users are elderly adults, the software design may need to consider their age-related declines in vision and motor abilities, and incorporate features such as larger buttons and clearer visual cues. Similarly, if the intended users lack technical expertise, the software design may need to be more intuitive, with less jargon and technical terms \cite{virzi1992refining}.
+%
+%            User profiles can be created through a variety of research methods, such as user surveys, interviews, and observations. Once established, user profiles can inform the design and development of software, as well as serve as a basis for evaluating its usability through user testing and other assessment techniques \cite{albert2013measuring}.
+%
+%        \subsubsection{User sudy}\hfill
+%
+%            The study comprised seven distinct in-person tasks that were performed on an iPad Air 11". These tasks included logging in, changing language and theme settings, retrieving specific information, and performing a crane origami.
+%
+%            The primary aim of the study was to evaluate the usability of the iOS app/player from the users' perspective. To achieve this goal, the study employed the in-person tasks to observe user behavior and gather feedback.
+%            
+%            The study sought to identify any usability issues or areas for improvement in the app/player. These findings could then be utilized to enhance the app/player in future updates.
+%                
+%    \subsection{User Experience Questionnaire}
+%    
+%        The User Experience Questionnaire is a standardized survey-based method used to evaluate the subjective experience of a user when interacting with a product, system, or service \cite{brooke1996sus}. The UEQ questionnaire is available online at www.ueq-online.org, and it is widely used in both the software industry and academia to assess the user experience of software applications.
+%
+%        The UEQ comprises 26 items that are designed to measure six key dimensions of user experience: attractiveness, perspicuity, efficiency, dependability, stimulation, and novelty \cite{hassenzahl2006user}. Each of these dimensions is assessed by four items, resulting in a total of 24 items, with an additional two items used to evaluate overall user experience and the user's willingness to recommend the software to others \cite{laugwitz2008construction}.
+%
+%        The six dimensions of user experience that are evaluated by the UEQ are defined as follows \cite{hassenzahl2003attrakdiff}:
+%
+%        \begin{enumerate}
+%            \item	Attractiveness: Refers to the aesthetic appeal of the software and its visual design. This includes factors such as the use of color, typography, and graphic elements.
+%            \item	Perspicuity: Refers to the clarity and simplicity of the software's interface and its ease of use. This includes factors such as the organization of information and the consistency of design elements.
+%            \item	Efficiency: Refers to the ease and speed with which users can accomplish their goals using the software. This includes factors such as the speed of response and the availability of shortcuts.
+%            \item	Dependability: Refers to the reliability and consistency of the software's performance. This includes factors such as error handling and system stability.
+%            \item	Stimulation: Refers to the degree to which the software engages and motivates users. This includes factors such as the use of multimedia elements and interactive features.
+%            \item	Novelty: Refers to the degree to which the software offers new or innovative features or functions. This includes factors such as the use of cutting-edge technology and unique design elements.
+%        \end{enumerate}
+%        
+%        The UEQ questionnaire utilizes a 7-point Likert scale to rate each of its 27 items, with 1 representing strong disagreement and 7 indicating strong agreement. The two additional items used to evaluate overall user experience and willingness to recommend the software to others are also rated on the same 7-point scale \cite{laugwitz2008construction}.
+%
+%        The UEQ can be administered either online or in person, and is commonly used in conjunction with other usability testing techniques, such as heuristic evaluation or usability testing. The results of the UEQ can be leveraged to pinpoint areas of strength and weakness in the software's user experience, which can inform future design decisions. The UEQ is demonstrated to possess high levels of reliability and validity in measuring user experience across a range of software contexts \cite{hassenzahl2006user}.
+%
+%        Through the use of the UEQ to evaluate software usability, designers and developers can gain valuable insights into the user experience, identify opportunities for improvement, and make informed design decisions based on data. This approach can result in software applications that are more user-friendly, efficient, and effective, ultimately leading to higher levels of user satisfaction and improved business outcomes \cite{brooke1996sus}.
 
 
 \section{Experiment and Results}
