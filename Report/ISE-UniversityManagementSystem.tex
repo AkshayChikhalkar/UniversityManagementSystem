@@ -75,9 +75,7 @@ To further identify the desired functionality of the University Room Management 
 One use case and two user stories will be described in more detail in this section.
 
 The identified use cases are \emph{Searching and booking a room} and \emph{Getting navigation instructions to a room}.
-For the use case \emph{Searching and booking a room} a use case specification was created. The specification is shown in \tablename~\ref{tab:usecasespec}.
-
-%TODO: Make some explenations for the use case specification
+For the use case \emph{Searching and booking a room} a use case specification was created. The specification is shown in \tablename~\ref{tab:usecasespec}. Some aspects of this use case specification will be further elaborated on.
 
 \begin{table}[tb]
 	\centering
@@ -130,7 +128,22 @@ For the use case \emph{Searching and booking a room} a use case specification wa
 	\caption{Use case specification for the use case \emph{Searching and booking a room}}
 	\label{tab:usecasespec}
 \end{table}
-	
+
+Extension 1a describes searching for a room via room properties.
+Possible properties for searching and filtering rooms could be: type of the room (lecture room or seminar room), room capacity or the availability of projectors and blackboards.
+
+In extension 5b the maximum allowed number of rooms is noted. This limit can be different depending on the user. Our current specification limits students to be allowed of booking only a single room at a given time. University staff is allowed to book multiple rooms at a time (e.g. a Professor booking multiple rooms for an exam). The specific limits for each group of staff should be selected according to the universities specific needs.
+
+Extension 5c notes the possibility to book a room for future use according to a time schedule. This option shall not be available to students but only to university staff. For example a room can be booked for a specific time frame on a weekly basis.
+This stands in contrast to the general booking presented in the main success scenario. In that case the room is booked from the time of booking without specifying the length of the booking. The booking has to be terminated manually in the end. Alternatively the booking is also terminated, if the system registers that the room has not been used for a while or a previously scheduled booking is about to start. Please see the BPMN diagram above for this process. %TODO: Link to the figure of the BPMN
+
+The open issues of the use case note the booking of multiple rooms at once.
+The process for this will likely be very similar to booking a single room. Showing information for multiple rooms at once and managing the unavailability of a single room ot of the selection need to be further deliberated. Similarly to scheduled booking students should not be allowed to book multiple rooms.
+
+%TODO: Describe user stories
+
+%TODO: Describe ChatGPT stuff
+
 %\section{Evaluation methods}
 %
 %    Software usability can be evaluated using various methods, such as usability testing, heuristic evaluation, cognitive walkthrough, expert review, survey/questionnaire, user interviews, and field studies \cite{sauro2012standardized}. Usability testing involves participants performing tasks while being observed by researchers to identify usability issues and gather feedback. Heuristic evaluation involves a group of experts evaluating the software based on established usability principles \cite{rubin2008handbook}. Cognitive walkthrough involves evaluators taking the perspective of users and walking through the steps required to complete a task to identify potential usability issues \cite{albert2013measuring}. Survey/questionnaire involves users providing feedback on their experience using the software through a series of prompts. User interviews involve asking users open-ended questions about their experience with the software to gather detailed feedback. Field studies involve observing users in their natural environment while using the software to identify usability issues \cite{sauro2016quantifying}.
