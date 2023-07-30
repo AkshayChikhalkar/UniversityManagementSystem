@@ -77,7 +77,7 @@ One use case and two user stories will be described in more detail in this secti
 The identified use cases are \emph{Searching and booking a room} and \emph{Getting navigation instructions to a room}.
 For the use case \emph{Searching and booking a room} a use case specification was created. The specification is shown in \tablename~\ref{tab:usecasespec}. Some aspects of this use case specification will be further elaborated on.
 
-\begin{table}[tb]
+\begin{table}[tp]
 	\centering
 	\begin{tabular}{|l|l|}
 		\hline
@@ -140,8 +140,47 @@ This stands in contrast to the general booking presented in the main success sce
 The open issues of the use case note the booking of multiple rooms at once.
 The process for this will likely be very similar to booking a single room. Showing information for multiple rooms at once and managing the unavailability of a single room ot of the selection need to be further deliberated. Similarly to scheduled booking students should not be allowed to book multiple rooms.
 
-%TODO: Describe user stories
+Following three user stories were formulated:
 
+\begin{enumerate}
+	\item As a Student, I want to book a room, so that I have a place to work.
+	\item As a Guest, I want to have navigational instructions, so that I am able to locate a room.
+	\item As a Professor, I want to book a room according to a schedule, so that I can give regular lectures in that room.
+\end{enumerate}
+
+A good practice is to formulate user stories according to the INVEST principle.
+This principle describes that a user story should be independent, negotiable, valuable, estimable, small and testable.
+User stories 1 and 2 were elaborated further and analyzed with regard to the INVEST principle.
+
+The first user story ``As a Student, I want to book a room, so that I have a place to work.'' is extended by following points:
+
+\begin{itemize}
+	\item A student is only allowed to book at most one room at any given time.
+	\item Students can only book rooms for the current time and are not able to reserve them for later.
+	\item A student is identified by their university id.
+	\item Bookings by students do not have an ending time specified.
+	\item Students are able to terminate their bookings manually.
+	\item Bookings by students are terminated automatically, if a booking by a university employee starts.
+\end{itemize}
+
+The user story fulfills the INVEST principle, as it does not depend on other user stories, leaves room for negotiation and presents a value to the students.
+A development team should be able to estimate the work required for realization. The story itself is small, as it only focuses on bookings for a single user group.
+The story can be tested, by students trying to book rooms.
+
+The second user story ``As a Guest, I want to have navigational instructions, so that I am able to locate a room.'' is extended by following points:
+
+\begin{itemize}
+	\item The user story is also valid for students and university employees.
+	\item Navigation is realized trough  building schematics, as well as indoor and outdoor maps.
+	\item Other points of interest (e.g. parking spots, water fountains) are out of scope and might be part of standalone user stories.
+	\item Users do not need to be verified for navigation.
+\end{itemize}
+
+This user story is independent of other user stories and still leaves room for negotiation. The value of better navigation at the university campus is provided.
+The use case is small and the required amount of work can be estimated. Tests might include the navigation between rooms or buildings of the university by external people.
+Thus, this use case also fulfills the INVEST principle.
+
+\section{Using machine learning models as specification instruments}
 %TODO: Describe ChatGPT stuff
 
 %\section{Evaluation methods}
