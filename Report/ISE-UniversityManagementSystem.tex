@@ -14,6 +14,7 @@
 \usepackage{tabularx}
 \usepackage{color}
 \usepackage{array}
+\usepackage{framed}
 \newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
 \definecolor{yellow}{rgb}{0.85, 1,1}
 \definecolor{pastleyellow}{rgb}{1, 0.98,0.63}
@@ -180,7 +181,12 @@ This user story is independent of other user stories and still leaves room for n
 The use case is small and the required amount of work can be estimated. Tests might include the navigation between rooms or buildings of the university by external people.
 Thus, this use case also fulfills the INVEST principle.
 
-\section{Using machine learning models as specification instruments}
+\section{Using machine learning models as specification instruments} \label{sec:chatgpt}
+
+One use case and one user story from the previous section were intentionally not further specified. Instead, they were used to analyze the ability of language models like ChatGPT\footnote{https://openai.com/chatgpt} to generate parts of a system specification.
+In particular, we used the aforementioned ChatGPT by OpenAI to generate a use case specification and elaborate on a user story according to the INVEST principle.
+
+The conversation with ChatGPT can be found in appendix~\ref{appdx:chatgpt}.
 %TODO: Describe ChatGPT stuff
 
 %\section{Evaluation methods}
@@ -263,12 +269,323 @@ Thus, this use case also fulfills the INVEST principle.
 
 
 \section{Conclusion}
+
 % use section* for acknowledgment
 \section*{Acknowledgment}
 
 \newpage
-\section*{Appendix}
+%\section*{Appendix}
+\appendix
 
+\subsection{Conversation with ChatGPT} \label{appdx:chatgpt}
+ 
+The conversation with ChatGPT described in section~\ref{sec:chatgpt}:
+
+Prompt:
+\begin{framed}
+	\small
+	A University Manager system, which is a system where students can book lecture rooms at the university for study and professors can book seminar rooms to give lectures. In addition the University Manager system, give the possibility for students, professor and guests  to have navigation instruction for a seminar room they search for.
+	
+	Write me a use-case specification using the proper and formal structure for that.
+	
+	A use case specification for the use case called (getting navigation instructions to a seminar room in the university) that is implemented in the University Manager system.
+\end{framed}
+
+Answer:
+\begin{framed}
+	\small
+	\textbf{Use Case Specification: Getting Navigation Instructions to a Seminar Room in the University}
+	
+	\textbf{Use Case Name:} Get Navigation Instructions to a Seminar Room
+	
+	\textbf{ID:} UC-NAV-01
+	
+	\textbf{Description:} This use case allows students, professors, and guests using the University Manager system to obtain navigation instructions to reach a specific seminar room within the university campus. Users can search for a seminar room by its room number or name, and the system will provide step-by-step directions to help them reach the desired location.
+	
+	\textbf{Primary Actor:} User (Student, Professor, or Guest)
+	
+	\textbf{Preconditions:}
+	
+	\begin{itemize}
+		\item The University Manager system is up and running.
+		\item The user is logged into the system (for registered students and professors).
+	\end{itemize}
+	
+	\textbf{Postconditions:}
+	
+	\begin{itemize}
+		\item The user receives navigation instructions to the requested seminar room.
+	\end{itemize}
+	
+	\textbf{Trigger:} User initiates the request to get navigation instructions to a seminar room.
+	
+	\textbf{Main Flow:}
+	
+	\begin{enumerate}
+		\item     The user opens the University Manager system's application or website.
+		\item If required, the user logs into the system using their credentials. (Skipped for guests)
+		\item The user selects the option to "Get Navigation Instructions" from the main menu.
+		\item The system presents the user with a search bar to enter the seminar room number or name they wish to navigate to.
+		\item The user enters the seminar room number or name in the search bar.
+		\item The system validates the entered information and searches for the requested seminar room in the database.
+		\item If the seminar room is found:\\
+		a. The system calculates the best route to reach the seminar room from the user's current location or a specified starting point within the campus.\\
+		b. The system generates step-by-step navigation instructions, including directional cues (e.g., left, right, straight), landmarks, and approximate distances.\\
+		c. The navigation instructions are displayed on the user's device screen.
+		\item If the seminar room is not found:\\
+		a. The system displays an error message indicating that the seminar room could not be located.\\
+		b. The use case terminates.
+	\end{enumerate}
+	
+	\textbf{Alternate Flow:}
+	
+	6a. If the entered seminar room number or name is not valid or does not exist:\\
+	i. The system displays an error message indicating that the seminar room could not be found.\\
+	ii. The user is given the option to re-enter the room number or name.\\
+	iii. The user may choose to cancel the navigation request.\\
+	iv. The use case continues from step 4.
+	
+	\textbf{Exceptional Flow:}
+	
+	\begin{enumerate}
+		\item If the University Manager system is not operational due to maintenance or technical issues:\\
+		a. The user is informed about the unavailability of the system.\\
+		b. The user may be asked to try again later or contact support for assistance.\\
+		c. The use case terminates.
+	\end{enumerate}
+	
+	\textbf{Notes:}
+	
+	\begin{itemize}
+		\item The University Manager system may integrate with campus maps or GPS services to provide accurate navigation instructions.
+		\item The system could offer additional features, such as displaying accessibility information or estimated time of arrival to the seminar room.
+		\item For security reasons, certain seminar rooms (e.g., faculty offices) may have restricted access for navigation instructions. In such cases, the system should inform the user accordingly.
+	\end{itemize}
+\end{framed}
+
+Prompt:
+\begin{framed}
+	\small
+	Use Case Specification: Getting Navigation Instructions to a Seminar Room in the University in terms of :
+	Name\\
+	Scope\\
+	Level\\
+	Primary actor \\
+	Stakeholders\\
+	preconditions\\
+	postconditions\\
+	Main success scenario\\
+	Extensions\\
+	Special requirements:\\
+	Technology / data variation: \\
+	Frequency of occurence: \\
+	Open issues:
+\end{framed}
+
+Answer:
+\begin{framed}
+	\small
+	\textbf{Name:} Getting Navigation Instructions to a Seminar Room in the University
+	
+	\textbf{Scope:} University Manager System
+	
+	\textbf{Level:} User Goal (Primary), Subfunction (Secondary)
+	
+	\textbf{Primary Actor:} User (Student, Professor, or Guest)
+	
+	\textbf{Stakeholders:}
+	
+	\begin{itemize}
+		\item Students: Require navigation instructions to find seminar rooms for academic purposes.
+		\item Professors: Need navigation guidance to reach seminar rooms for conducting lectures or meetings.
+		\item Guests: Visitors to the university who may require navigation assistance to attend seminars or events.
+		\item University Management: Ensures the system enhances campus navigation and user experience.
+	\end{itemize}
+	
+	\textbf{Preconditions:}
+	
+	\begin{itemize}
+		\item The University Manager system is operational and accessible to the primary actor.
+		\item The user has a compatible device with access to the University Manager system.
+		\item For registered students and professors, the user is logged into the system.
+	\end{itemize}
+	
+	\textbf{Postconditions:}
+	
+	\begin{itemize}
+		\item The user receives accurate navigation instructions to the requested seminar room within the university campus.
+	\end{itemize}
+	
+	\textbf{Main Success Scenario:}
+	
+	\begin{enumerate}
+		\item The user opens the University Manager system's application or website.
+		\item If required, the user logs into the system using their credentials. (Skipped for guests)
+		\item The user selects the option to "Get Navigation Instructions" from the main menu.
+		\item The system presents the user with a search bar to enter the seminar room number or name they wish to navigate to.
+		\item The user enters the seminar room number or name in the search bar.
+		\item The system validates the entered information and searches for the requested seminar room in the database.
+		\item If the seminar room is found:\\
+		a. The system calculates the best route to reach the seminar room from the user's current location or a specified starting point within the campus.\\
+		b. The system generates step-by-step navigation instructions, including directional cues (e.g., left, right, straight), landmarks, and approximate distances.
+		c. The navigation instructions are displayed on the user's device screen.
+		\item If the seminar room is not found:\\
+		a. The system displays an error message indicating that the seminar room could not be located.\\
+		b. The user is given the option to re-enter the room number or name.\\
+		c. The user may choose to cancel the navigation request.
+	\end{enumerate}
+	
+	\textbf{Extensions:}
+	
+	6a. If the entered seminar room number or name is not valid or does not exist:\\
+	i. The system displays an error message indicating that the seminar room could not be found.\\
+	ii. The user is prompted to re-enter the room number or name.\\
+	iii. The user may choose to cancel the navigation request.\\
+	iv. The use case continues from step 4.
+	
+	\textbf{Special Requirements:}
+	
+	\begin{itemize}
+		\item The University Manager system should integrate with campus maps or GPS services for accurate navigation.
+		\item The system may provide additional features such as displaying accessibility information or estimated time of arrival to the seminar room.
+		\item Certain seminar rooms may have restricted access, and the system should handle these cases appropriately.
+	\end{itemize}
+	
+	\textbf{Technology / Data Variation:}
+	
+	\begin{itemize}
+		\item The system should be accessible via various platforms (web, mobile apps) to accommodate different user devices.
+		\item The availability of campus map data and GPS accuracy may vary depending on the university's infrastructure.
+	\end{itemize}
+	
+	\textbf{Frequency of Occurrence:}
+	
+	\begin{itemize}
+		\item The use case is expected to occur frequently throughout the academic year as students attend lectures, professors conduct classes, and events are held.
+	\end{itemize}
+	
+	\textbf{Open Issues:}
+	
+	\begin{itemize}
+		\item How will the system handle navigation to seminar rooms located in different buildings or floors within the campus?
+		\item Should the system provide additional options such as displaying alternative routes or real-time updates for room availability?
+		\item How will the system ensure privacy and security of users' location data while providing navigation instructions?
+	\end{itemize}
+\end{framed}
+
+Prompt:
+\begin{framed}
+	\small
+	write me a user story using the INVEST principal for the following user story:
+	
+	user story: As a Professor, I want to book a room according to a schedule so that I can give regular lectures in that room.
+\end{framed}
+
+Answer:
+\begin{framed}
+	\small
+	\textbf{User Story:} As a Professor, I want to book a room according to a schedule so that I can give regular lectures in that room.
+	
+	\textbf{INVEST Principle:}
+	
+	\begin{itemize}
+		\item \textbf{Independent:} The user story is self-contained and can be implemented without dependencies on other user stories. It focuses on the specific need of the Professor to book a room for regular lectures.
+		
+		\item \textbf{Negotiable:} The details of the implementation are open to negotiation between the Professor (user) and the development team. The team can collaborate with the Professor to determine the specific room booking requirements and scheduling preferences.
+		
+		\item \textbf{Valuable:} The user story provides clear value to the Professor by enabling them to secure a designated room for their regular lectures, ensuring consistent teaching arrangements and an organized learning environment.
+		
+		\item \textbf{Estimable:} The user story is well-defined and has a clear scope, making it estimable for the development team. The effort required to implement the room booking functionality can be reasonably assessed.
+		
+		\item \textbf{Small:} The user story has a focused and concise scope, which allows the development team to implement it within a single development iteration.
+		
+		\item \textbf{Testable:} The user story's acceptance criteria are specific and measurable, allowing for effective testing. It is possible to verify the successful implementation of the room booking feature based on the defined criteria.
+	\end{itemize}
+	
+	\textbf{Acceptance Criteria:}
+	
+	\begin{itemize}
+		\item The Professor can access the University Manager system and navigate to the "Room Booking" section.
+		\item The system presents a form with options to select the desired room, date, start time, and end time for the lecture.
+		\item The Professor can enter the required details and submit the booking request.
+		\item The system validates the availability of the selected room for the specified date and time.
+		\item If the room is available, the system confirms the booking and sends a confirmation email to the Professor.
+		\item The booked room should be reserved in the system's schedule for the specified date and time.
+		\item The Professor can view, modify, or cancel their booked lectures within the system as needed.
+		\item In case of any conflicts or unavailability, the system provides alternative room options or available time slots for the Professor's lectures.
+		\item The system ensures that only authorized Professors can access the room booking functionality.
+	\end{itemize}
+	
+	\textbf{Additional Considerations:}
+	
+	\begin{itemize}
+		\item The system should have user authentication to ensure that only authorized Professors can access the room booking feature.
+		\item The system may send reminders or notifications to the Professor before the scheduled lecture time.
+		\item The room booking feature should be user-friendly and accessible via multiple platforms, such as web and mobile applications.
+		\item The system should handle and display room availability in real-time to avoid double bookings.
+		\item The user interface should be intuitive and provide clear feedback on the status of the room booking process.
+	\end{itemize}
+	
+	Note: The user story may be further elaborated during backlog grooming or refinement sessions to capture more detailed requirements and user expectations.
+\end{framed}
+
+Prompt:
+\begin{framed}
+	\small
+	write me a user story using the INVEST principal for the following user story:
+	
+	user story: 
+	As a University member, I want to use the Room Management System, because it will make life easier.
+\end{framed}
+
+Answer:
+\begin{framed}
+	\small
+	\textbf{User Story:} As a University member, I want to use the Room Management System because it will make life easier.
+	
+	\textbf{INVEST Principle:}
+	
+	\begin{itemize}
+		\item \textbf{Independent:} The user story is self-contained and can be implemented independently without relying on other user stories. It focuses on the specific need of the University member to utilize the Room Management System for simplifying room-related tasks.
+		
+		\item \textbf{Negotiable:} The user story allows for negotiation between the University member (user) and the development team to identify the specific features and functionalities that will enhance their experience with the Room Management System.
+		
+		\item \textbf{Valuable:} The user story holds clear value for the University member by offering a convenient and efficient solution for managing room-related activities, streamlining processes, and saving time.
+		
+		\item \textbf{Estimable:} The user story is well-defined and has a clear scope, making it estimable for the development team. The effort required to implement the Room Management System features can be reasonably estimated.
+		
+		\item \textbf{Small:} The user story has a focused scope, enabling the development team to implement it within a single development iteration.
+		
+		\item \textbf{Testable:} The user story's acceptance criteria are specific and measurable, enabling effective testing. The success of the Room Management System can be assessed based on the defined criteria.
+	\end{itemize}
+	
+	\textbf{Acceptance Criteria:}
+	
+	\begin{itemize}
+		\item The Room Management System should be accessible to all University members through a user-friendly web application or mobile interface.
+		\item The system should have user authentication to ensure that only authorized University members can access and use the Room Management features.
+		\item University members should be able to log in using their credentials or university ID.
+		\item The Room Management System should provide a clear and intuitive user interface with navigational menus and visual cues.
+		\item University members should be able to view available rooms, their schedules, and occupancy status in real-time.
+		\item The system should offer a simple and efficient process for booking or reserving rooms for various purposes (e.g., lectures, study sessions, meetings).
+		\item Room availability should be displayed in a visual calendar format, with filtering options based on date, time, location, or room amenities.
+		\item The system should send notifications or reminders to users about upcoming room reservations or changes in room status.
+		\item University members should be able to easily modify or cancel their room reservations within the system.
+		\item The Room Management System should maintain accurate and up-to-date records of room bookings and usage.
+		\item The system should have a responsive design to ensure usability across different devices and screen sizes.
+	\end{itemize}
+	
+	\textbf{Additional Considerations:}
+	
+	\begin{itemize}
+		\item The Room Management System could incorporate features like room occupancy limits, equipment availability, and room-specific details.
+		\item To enhance user adoption, the system could provide user tutorials or help documentation for first-time users.
+		\item The system should prioritize data security and privacy, ensuring that only authorized personnel can access sensitive room-related information.
+		\item Regular user feedback and iterative improvements can be incorporated to enhance the Room Management System based on user preferences and needs.
+	\end{itemize}
+	
+	Note: The user story may be further elaborated during backlog grooming or refinement sessions to capture more detailed requirements and user expectations
+\end{framed}
  
 \newpage
 \bibliographystyle{IEEEtran}
