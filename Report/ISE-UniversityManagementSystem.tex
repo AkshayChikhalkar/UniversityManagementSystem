@@ -187,7 +187,25 @@ One use case and one user story from the previous section were intentionally not
 In particular, we used the aforementioned ChatGPT by OpenAI to generate a use case specification and elaborate on a user story according to the INVEST principle.
 
 The conversation with ChatGPT can be found in appendix~\ref{appdx:chatgpt}.
-%TODO: Describe ChatGPT stuff
+
+The initial prompt included a short description of the system and asked to write a use case specification for the specific use case.
+ChatGPT returned a specification including a name, ID, primary actor, preconditions, postconditions, trigger, main flow, alternate flow, exceptional flow and notes.
+To simplify comparisons ChatGPT was asked to provide the specification with the same aspects as those of the specification in \tablename~\ref{tab:usecasespec}.
+
+On first sight, the generated response seems to be good. Some points even include additional explanations. But there are other interesting things to note:
+
+The use case's level was identified as being a user goal and a sub-function. The level should be either one or the other, but not both. by investigating the specification it can be seen, that it should probably be a user goal instead of a sub-function.
+
+The three stakeholders students, professors and guests are identical to the primary actors previously noted in the specification. The only stakeholder, which is not a primary actor is the university management. In this case the primary actors should not be listed in the stakeholders section.
+
+The generated preconditions are relatively simple and are not necessarily needed for the use case specification. Additionally, the third precondition, that the user needs to be logged in, directly contradicts the main success scenario, in which the user is logging in during step 2. Either the precondition or the following scenario is wrong.
+
+The main success scenario starts with the user opening the system application. This is different to our approach, where the scenario started with the application being ready for user interaction. The approach chosen by ChatGPT is not wrong, but just different.
+Step 7 and 8 describe how the scenario continues depending on whether a room was found or not. The main success scenario should only contain the successful case of the room being found. The other case should be included as an alternative flow.
+Interestingly enough, the single alternative flow of the specification handles this case. Thus, step 8 of the main flow is unnecessary.
+
+For the point frequency of occurrence the generated specification is defined as ``frequently throughout the academic year''. This is a very non-descriptive specification, as it is unclear if the use cases will occur multiple times per hour, per day or per week.
+%TODO: Describe ChatGPT stuff (User story)
 
 %\section{Evaluation methods}
 %
@@ -366,7 +384,7 @@ Answer:
 Prompt:
 \begin{framed}
 	\small
-	Use Case Specification: Getting Navigation Instructions to a Seminar Room in the University in terms of :
+	Use Case Specification: Getting Navigation Instructions to a Seminar Room in the University in terms of :\\
 	Name\\
 	Scope\\
 	Level\\
