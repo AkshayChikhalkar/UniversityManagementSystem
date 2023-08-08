@@ -188,6 +188,8 @@ In particular, we used the aforementioned ChatGPT by OpenAI to generate a use ca
 
 The conversation with ChatGPT can be found in appendix~\ref{appdx:chatgpt}.
 
+% About the use case specification
+
 The initial prompt included a short description of the system and asked to write a use case specification for the specific use case.
 ChatGPT returned a specification including a name, ID, primary actor, preconditions, postconditions, trigger, main flow, alternate flow, exceptional flow and notes.
 To simplify comparisons ChatGPT was asked to provide the specification with the same aspects as those of the specification in \tablename~\ref{tab:usecasespec}.
@@ -205,7 +207,26 @@ Step 7 and 8 describe how the scenario continues depending on whether a room was
 Interestingly enough, the single alternative flow of the specification handles this case. Thus, step 8 of the main flow is unnecessary.
 
 For the point frequency of occurrence the generated specification is defined as ``frequently throughout the academic year''. This is a very non-descriptive specification, as it is unclear if the use cases will occur multiple times per hour, per day or per week.
-%TODO: Describe ChatGPT stuff (User story)
+
+% About the user story
+
+After generating the discussed use case specification ChatGPT was prompted to write a user story using the INVEST principle for user story 3: ``As a Professor, I want to book a room according to a schedule, so that I can give regular lectures in that room.''
+
+The answer starts by listing the six facets of INVEST. It is declared that the given user story fulfills all aspects of the INVEST principle.
+Additionally, acceptance criteria for the use case are defined by the language model. The acceptance criteria seem sensible to the use case. Although the first five acceptance criteria are structured very similar to a use cases main success scenario.
+The answer also includes some additional considerations, which also seem sensible in the context of the system.
+
+While reading ChatGPT's answer the question arose, how the model would handle a user story, which does not fulfill all aspects of INVEST.
+Thus, the model was prompted to write another user story according to the INVEST principle. The user story requested in this prompt is: ``As a University member, I want to use the Room Management System, because it will make life easier.''
+This user story is very broad and unspecific, such that it is neither estimable nor small. The user story also is not independent, as it focuses on the entire room management system at once.
+
+The answer of ChatGPT is disappointing, as it is argued that the given user story fulfills all aspects of INVEST. Especially statements like ``The user story has a focused scope'', or ``It focuses on the specific need [...] to utilize the Room Management System'' show that the problems of the user story are not detected by ChatGPT. The task to write the use case done according to the INVEST principle is done, but there is no plausibility check performed.
+
+Although the answers by ChatGPT are not completely correct, the amount of sensible output by the language model are quite impressive, especially if you consider the small amount of information given in the prompts.
+The answers of ChatGPT need to be checked for plausibility and cannot be used as is. But the generated use case specifications and user story elaborations can be used as a good starting point, which requires some manual fine-tuning by human designers. Using language models for initial specification drafts can probably decrease the required time for a system specification.
+
+It should also be noted that the used ChatGPT is a general purpose language model. More specified models might yield even better results.
+Currently, there are developments on models with the specific task to generate such specification and even write some initial code. One example that should be noted in this context is ``MetaGPT''\footnote{https://github.com/geekan/MetaGPT}, which according to its development page is able to generate user stories, requirements, APIs and more.
 
 %\section{Evaluation methods}
 %
