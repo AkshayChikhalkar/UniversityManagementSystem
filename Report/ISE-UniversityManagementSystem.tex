@@ -25,11 +25,8 @@
 
 \setlength\parskip{1em plus 0.1em minus 0.2em}
 \setlength\parindent{0pt}
-%\usepackage{parskip} 
 \setlength{\parskip}{8pt}
 \usepackage{subcaption}
-%\setlength\extrarowheight{5pt}
-\renewcommand{\arraystretch}{1.5}
 
 \begin{document}
 
@@ -228,82 +225,126 @@ The answers of ChatGPT need to be checked for plausibility and cannot be used as
 It should also be noted that the used ChatGPT is a general purpose language model. More specified models might yield even better results.
 Currently, there are developments on models with the specific task to generate such specification and even write some initial code. One example that should be noted in this context is ``MetaGPT''\footnote{https://github.com/geekan/MetaGPT}, which according to its development page is able to generate user stories, requirements, APIs and more.
 
-%\section{Evaluation methods}
-%
-%    Software usability can be evaluated using various methods, such as usability testing, heuristic evaluation, cognitive walkthrough, expert review, survey/questionnaire, user interviews, and field studies \cite{sauro2012standardized}. Usability testing involves participants performing tasks while being observed by researchers to identify usability issues and gather feedback. Heuristic evaluation involves a group of experts evaluating the software based on established usability principles \cite{rubin2008handbook}. Cognitive walkthrough involves evaluators taking the perspective of users and walking through the steps required to complete a task to identify potential usability issues \cite{albert2013measuring}. Survey/questionnaire involves users providing feedback on their experience using the software through a series of prompts. User interviews involve asking users open-ended questions about their experience with the software to gather detailed feedback. Field studies involve observing users in their natural environment while using the software to identify usability issues \cite{sauro2016quantifying}.
-%
-%    Each evaluation method has its own strengths and weaknesses, and the choice of method depends on factors such as the stage of development, evaluation goals, and available resources. Combining multiple methods can provide a more comprehensive understanding of software usability \cite{hartson2012ux}. For this particular study, heuristic evaluation, usability testing and user experience questionnaire are being used.
-%
-%	\subsection{Heuristic Evaluation}
-%        Heuristic evaluation is a method used to systematically evaluate the usability of a user interface or product by a small group of evaluators \cite{nielsen1994heuristic}. These evaluators consist of individuals with relevant experience and expertise in usability, interaction design, and related fields. The evaluation process involves examining the interface against a set of predefined usability heuristics or guidelines that have been established through research and experience \cite{nielsen1994heuristic}.
-%
-%        During the evaluation process, the evaluators identify any usability issues that violate the established heuristics and may provide recommendations to improve the interface's usability. This evaluation can be conducted at various stages of the design process, ranging from early wireframes to the final product.
-%        
-%        Heuristic evaluation offers a quick and cost-effective way to identify usability issues early on and provide feedback to improve the product's design \cite{molich1990improving}. This method can be useful in improving the usability of a product and ensuring a positive user experience.
-%        
-%        The evaluation of usability often involves the use of heuristic principles or guidelines that are established based on research and experience. Ten commonly used heuristic principles for evaluating usability are \cite{nielsen2005ten}:
-%
-%        \begin{enumerate}
-%            \item Visibility of system status: The system should provide appropriate feedback within a reasonable amount of time to keep the user informed about what is happening.
-%            \item Match between system and the real world: The system should use words, phrases, and concepts that are familiar to the user, and follow real-world conventions.
-%            \item User control and freedom: Users should be provided with options to easily reverse actions and resume tasks.
-%            \item Consistency and standards: The system should follow platform conventions, and avoid confusing users with different words, situations, or actions.
-%            \item Error prevention: The system should be designed to prevent serious user mistakes by putting up constraints or barriers.
-%            \item Recognition rather than recall: The user should not have to remember information from one part of the interface to another, and objects, actions, and options should be visible.
-%            \item Flexibility and efficiency of use: The system should cater to both experienced and novice users, and allow the user to tailor frequent actions and automate repetitive tasks.
-%            \item Aesthetic and minimalist design: The interface should prioritize important information, and avoid containing irrelevant or rarely needed information.
-%            \item Help users recognize, diagnose, and recover from errors: Error messages should be expressed in plain language and clearly indicate the problem and steps to resolve it.    
-%            \item Help and documentation: The system should include documentation to help users understand features and capabilities, but the system should be designed in such a way that documentation is not needed to complete tasks.
-%        \end{enumerate}
-%
-%        The use of these heuristic principles can help designers and evaluators identify usability issues and improve the overall user experience of a software application \cite{nielsen1994heuristic}.
-%
-%    \subsection{Usability Testing}
-%        
-%        \subsubsection{User profiles}\hfill
-%
-%            In the context of software usability, a user profile refers to a detailed depiction of the characteristics that define the typical or intended user for a specific software system \cite{molich1990improving}. This may include the user's demographic information, educational background, professional role, experience level, and any other pertinent factors that may influence their interaction with the software \cite{molich1990improving}.
-%
-%            Creating a user profile is a crucial aspect of software usability design and evaluation, as it enables developers and designers to gain a better understanding of their target users' requirements and needs. By taking into account the user profile, designers can ensure that the software is customized to meet the specific needs and preferences of its intended users\cite{rubin2008handbook}.
-%
-%            For example, if the target users are elderly adults, the software design may need to consider their age-related declines in vision and motor abilities, and incorporate features such as larger buttons and clearer visual cues. Similarly, if the intended users lack technical expertise, the software design may need to be more intuitive, with less jargon and technical terms \cite{virzi1992refining}.
-%
-%            User profiles can be created through a variety of research methods, such as user surveys, interviews, and observations. Once established, user profiles can inform the design and development of software, as well as serve as a basis for evaluating its usability through user testing and other assessment techniques \cite{albert2013measuring}.
-%
-%        \subsubsection{User sudy}\hfill
-%
-%            The study comprised seven distinct in-person tasks that were performed on an iPad Air 11". These tasks included logging in, changing language and theme settings, retrieving specific information, and performing a crane origami.
-%
-%            The primary aim of the study was to evaluate the usability of the iOS app/player from the users' perspective. To achieve this goal, the study employed the in-person tasks to observe user behavior and gather feedback.
-%            
-%            The study sought to identify any usability issues or areas for improvement in the app/player. These findings could then be utilized to enhance the app/player in future updates.
-%                
-%    \subsection{User Experience Questionnaire}
-%    
-%        The User Experience Questionnaire is a standardized survey-based method used to evaluate the subjective experience of a user when interacting with a product, system, or service \cite{brooke1996sus}. The UEQ questionnaire is available online at www.ueq-online.org, and it is widely used in both the software industry and academia to assess the user experience of software applications.
-%
-%        The UEQ comprises 26 items that are designed to measure six key dimensions of user experience: attractiveness, perspicuity, efficiency, dependability, stimulation, and novelty \cite{hassenzahl2006user}. Each of these dimensions is assessed by four items, resulting in a total of 24 items, with an additional two items used to evaluate overall user experience and the user's willingness to recommend the software to others \cite{laugwitz2008construction}.
-%
-%        The six dimensions of user experience that are evaluated by the UEQ are defined as follows \cite{hassenzahl2003attrakdiff}:
-%
-%        \begin{enumerate}
-%            \item	Attractiveness: Refers to the aesthetic appeal of the software and its visual design. This includes factors such as the use of color, typography, and graphic elements.
-%            \item	Perspicuity: Refers to the clarity and simplicity of the software's interface and its ease of use. This includes factors such as the organization of information and the consistency of design elements.
-%            \item	Efficiency: Refers to the ease and speed with which users can accomplish their goals using the software. This includes factors such as the speed of response and the availability of shortcuts.
-%            \item	Dependability: Refers to the reliability and consistency of the software's performance. This includes factors such as error handling and system stability.
-%            \item	Stimulation: Refers to the degree to which the software engages and motivates users. This includes factors such as the use of multimedia elements and interactive features.
-%            \item	Novelty: Refers to the degree to which the software offers new or innovative features or functions. This includes factors such as the use of cutting-edge technology and unique design elements.
-%        \end{enumerate}
-%        
-%        The UEQ questionnaire utilizes a 7-point Likert scale to rate each of its 27 items, with 1 representing strong disagreement and 7 indicating strong agreement. The two additional items used to evaluate overall user experience and willingness to recommend the software to others are also rated on the same 7-point scale \cite{laugwitz2008construction}.
-%
-%        The UEQ can be administered either online or in person, and is commonly used in conjunction with other usability testing techniques, such as heuristic evaluation or usability testing. The results of the UEQ can be leveraged to pinpoint areas of strength and weakness in the software's user experience, which can inform future design decisions. The UEQ is demonstrated to possess high levels of reliability and validity in measuring user experience across a range of software contexts \cite{hassenzahl2006user}.
-%
-%        Through the use of the UEQ to evaluate software usability, designers and developers can gain valuable insights into the user experience, identify opportunities for improvement, and make informed design decisions based on data. This approach can result in software applications that are more user-friendly, efficient, and effective, ultimately leading to higher levels of user satisfaction and improved business outcomes \cite{brooke1996sus}.
+
+
+
+%%%%%%%% Domain Model (Akshay)%%%%%%%%%
+\section{Domain model}
+The domain model is visual representation of real objects and conceptual classes. 
+
+\subsection{Conceptual classes}
+	The conceptual classes for the University Room Management System (URMS) are shown in \tablename~\ref{tab:conceptualclasses} below.
+
+	\begin{table}[h]
+		\centering
+		\begin{tabular}{|l|l|}
+			\hline
+			Business transactions                       & Booking (includes reservations implicitly) \\ \hline
+			Transaction line items                      & Booking time frame \\ \hline
+			Product/service                       		& \begin{tabular}[t]{@{}l@{}}
+																Room \\
+																Navigation Instructions
+															\end{tabular} \\ \hline
+			Transaction record               			& - \\ \hline
+			Actors									    & \begin{tabular}[t]{@{}l@{}}
+																Students \\ 
+																Guests \\
+																Professors \\
+																Other university employees
+															\end{tabular} \\ \hline
+			Place               					 	& \begin{tabular}[t]{@{}l@{}}
+																University campus \\ 
+																Software Frontend (System user interface)
+															\end{tabular} \\ \hline
+			Events              						& Bookings \\ \hline
+			Physical objects       						& \begin{tabular}[t]{@{}l@{}}
+																Rooms \\
+																Buildings \\
+																Room display \\
+																Door lock \\
+																Movement sensor
+															\end{tabular} \\ \hline
+			Descriptions                  				& - \\ \hline
+			Catalouge        							& - \\ \hline
+			Container									& \begin{tabular}[t]{@{}l@{}}
+																Room \\ 
+																Building \\
+																Campus
+															\end{tabular} \\ \hline
+			Things in container						    & \begin{tabular}[t]{@{}l@{}}
+																Building \\ 
+																Room \\
+																Room display \\
+																Door lock \\
+																Movement sensor
+															\end{tabular} \\ \hline
+			Neighboring systems                 		& - \\ \hline
+			Records                 					& Booking \\ \hline
+			Financial instruments                 		& - \\ \hline
+			Schedules/manuals                 			& Room schedule \\ \hline
+
+		\end{tabular}
+		\caption{Conceptual classes for the University Room Management System}
+		\label{tab:conceptualclasses}
+	\end{table}
+
+	%%%%%% Need to review %%%% @akshay
+	% In the context of a use case ``Searching and Booking a Room'', several conceptual classes are identified to categorise and describe various aspects of the system. Business transactions, represented by actions like ``Booking'', encapsulate user interactions involving reserving a room, implicitly including reservations. Transaction line items, such as ``Booking time frame'', delineate specific details within these transactions, like the duration of the booking. Products or services, exemplified by ``Room'' and ``Navigation Instructions'', signify offerings available for interaction within the system, with rooms being bookable entities and navigation instructions aiding users. Actors, encompassing ``Students'', ``Guests'', ``Professors'', and ``Other university employees'', denote distinct user roles interacting with the system. ``Place'' conceptualises both tangible and virtual locations like the ``University campus'' and the ``Software Frontend'', the latter being the user interface. ``Events'', in this case, ``Bookings'', denote significant occurrences within the system. Physical objects, such as ``Rooms'', ``Buildings'', ``Room display'', ``Door lock'', and ``Movement sensor'', represent tangible entities within the environment. Containers, including ``Room'', ``Building'', and ``Campus'', group entities within larger contexts. ``Things in container'', consisting of items like ``Building'', ``Room'', ``Room display'', ``Door lock'', and ``Movement sensor'', describe components held within these containers. While ``Descriptions'' and ``Catalogue'' are mentioned without specific instances, ``Neighbouring systems'' indicates interactions with external systems. ``Records'', exemplified by ``Booking'', signify formal recordings of user actions. The concept of ``Financial instruments'' refers to unspecified financial tools, and ``Schedules/manuals'', like ``Room schedule'', represent plans or guides outlining specific system aspects.
+
+	The conceptual classes helps to clarify how different elements interact within the system. These conceptual classes provide a way to categorize the key aspects of the system. The system's ``business transactions'' involve actions like making room reservations or bookings. Each transaction is further detailed through ``transaction line items,'' which specify aspects such as the timeframe for a room reservation. The ``product/service'' category encompasses items like rooms and navigation instructions, while ``actors'' refers to the different individuals who interact with the system, such as students, professors, guests, and university staff.
+	
+	``Place'' pertains to relevant locations, including the university campus and the user interface of the system itself. Events like bookings are tracked under ``events,'' while ``physical objects'' encompass tangible items like rooms, buildings, and sensors.
+	
+	``Container'' refers to broader categories like buildings, rooms, and the campus, while ``things in container'' delves into specific instances within those categories, such as individual rooms and door locks. The concept of ``neighboring systems'' highlights potential interactions with other external systems.
+	
+	``Records'' represent the detailed information about bookings made within the system. ``Schedules/manuals'' involve information related to room schedules or guidelines. These conceptual classes help paint a comprehensive picture of how the University Room Management System operates and how its various components fit together.
+
+\subsection{Class diagram}
+	The class diagram illustrates the structure and relationship among classes in the system. The university room management system includes total of 13 classes which are shown in \figurename~\ref{fig:classdiagram} below.
+
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.6\textwidth]{Images/DomainModel.png}
+		\caption{Domain model of the University Room Management System}
+		\label{fig:classdiagram}
+	\end{figure}
+
+	\subsubsection*{Classes}
+		The classes is an amalgamation of physical objects and software components. The classes are described below:
+		Movement sensor: The movement sensor is a physical object which is used to detect the presence of a person in the room. It is connected to the room display and the door lock through the system (Room). At least one movement sensor is present in each room and connected to the class ``Room'' in many-to-one association, refer to \figurename~\ref{fig:classdiagram}.
+		
+		Display: The display is a physical object which displays the room schedule and other booking information. In this system we consider no or more that one display per room and connected to the class ``Room'' in one-to-many association, refer to \figurename~\ref{fig:classdiagram}.
+
+		Lock: The lock is again a physical object which is used to lock and unlock the room. In this system we consider one lock per room and connected to the class ``Room'' in one-to-one association, refer to \figurename~\ref{fig:classdiagram}. The class ``Lock'' has one attribute ``Battery Level'' which is used to check the status of the Battery and helps to keep track of maintenance cycles.
+
+		Navigation Instructions: The navigation instructions is a service which is used to provide directions or visual insight to the user. Navigation instructions can be invoked by the system itself or by the user. This can be achieved by requesting navigation instructions at the time of booking or by accessing navigation service and search for the room number. The class ``Navigation Instructions'' has one attribute ``Type of instruction'' which defines whether instructions are requested in the building schematics or maps form. It is associated with the class ``Room'' and ``User'' in many-to-one association, refer to \figurename~\ref{fig:classdiagram}.
+
+		Schedule: The class ``Schedule'' holds the schedule metadata about the lectures according to scheduler. This schedule can be referred by the user at the time of booking to create recurring room reservations. The attribute ``List of dates / times'' returns the all the days and time of the week when the lecture is scheduled. The class ``Schedule'' is associated with the class ``Booking'' in one-to-many (0...1 to *) association, refer to \figurename~\ref{fig:classdiagram}.
+
+		Booking: The class ``Booking'' holds the booking metadata about the room reservations. The attributes ``Start Time'' and ``End Time'' returns the start and end time of the booking. It invokes class ``Schedule'' to get lecture schedule if required. The class ``Booking'' is associated with the class ``Room'', ``Schedule'' and ``Registered User'' in many-to-one association, refer to \figurename~\ref{fig:classdiagram}.
+
+		Registered User: The class ``Registered User'' is master class for university students, professors and other university staff. It means, these users are authenticated via valid student or employee ID. The classes ``Student'', ``Professors'' and ``Employee'' are inherited from the class ``Registered User'' and associated with the class ``Booking'' in one-to-many (1 to *) association, refer to \figurename~\ref{fig:classdiagram}.
+
+		Guest: The class ``Guest'' is a user who is not registered in the system. It is inherited from the class ``User'' and has limited privileges in the system such as requesting navigational instructions.
+
+		User: The class ``User'' is a master class for all the users in the system. It is associated with the class ``Navigation Instructions'' in one-to-many (1 to *) association, refer to \figurename~\ref{fig:classdiagram}.
+
+		Room: The class ``Room'' is a software component which is used to represent the physical room. It is associated with the classes ``Booking'', ``Navigation Instructions'', ``Display'', ``Lock'' (1 to 1), ``Movement Sensor'' and ``Booking'' in one-to-many (1 to *) association, refer to \figurename~\ref{fig:classdiagram}. ``Room'' contains total of 6 attributes which are described below:
+		``Room Number'': The attribute ``Room Number'' is used to identify the room uniquely. It is a primary key for the class ``Room''.
+		``Capacity'': The attribute ``Room Capacity'' is used to identify the capacity of the room or number of people it can fit.
+		``Room Size'': The attribute ``Room Size'' is used to identify the size of the room in square meters.
+		``Category'': The attribute ``Category'' is used to identify the type of the room such as lecture room, seminar room, etc.
+		``Projector available'': The attribute ``Projector available'' is used to identify whether the room has projector or not.
+		``Building'': The attribute ``Building'' is used to identify the building in which the room is located.
+
+
+%%%%%%%% System Architecture (Akshay)%%%%%%%%%
+%\section{System architecture}
+
+
 
 
 \section{Experiment and Results}
-
 \section{Discussion}
 
 
