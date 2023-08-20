@@ -6,7 +6,7 @@
 \usepackage{algorithmic}
 \usepackage{graphicx}
 \usepackage{textcomp}
-\usepackage{xcolor}
+%\usepackage{xcolor}
 \usepackage{float}
 \usepackage{subcaption}
 \usepackage{multirow}
@@ -21,12 +21,17 @@
 \setlength{\arrayrulewidth}{0.1mm}
 \setlength{\tabcolsep}{6pt}
 \setlength\headheight{10pt}
+\usepackage{cellspace}
+\setlength\cellspacetoplimit{4pt}
+\setlength\cellspacebottomlimit{4pt}
+
+\newcommand\cincludegraphics[2][]{\raisebox{-0.3\height}{\includegraphics[#1]{#2}}}
 
 
 \setlength\parskip{1em plus 0.1em minus 0.2em}
 \setlength\parindent{0pt}
 \setlength{\parskip}{8pt}
-\usepackage{subcaption}
+%\usepackage{subcaption}
 
 \begin{document}
 
@@ -230,7 +235,7 @@ Currently, there are developments on models with the specific task to generate s
 
 %%%%%%%% Domain Model (Akshay)%%%%%%%%%
 \section{Domain model}
-The domain model is visual representation of real objects and conceptual classes. 
+A domain model is a conceptual framework utilized in software engineering to encapsulate the fundamental elements comprising a particular problem domain \cite{larman2012applying}. It involves creating a visual or diagrammatic representation that outlines the essential entities, their attributes, interconnections, and governing principles within the domain. This model is instrumental in fostering a comprehensive understanding among diverse stakeholders, including developers, designers, and domain experts \cite{fowler2004uml}. It involves defining entities like``Customer'', ``Product'' or ``Order'', detailing their characteristics and the relationships that bind them. By delineating associations, constraints, and business rules, a domain model ensures that the software system mirrors the intricacies of the real-world context it aims to address. Typically illustrated through UML class diagrams, domain models facilitate effective communication and serve as a foundation for crafting software solutions aligned with the domain's intricacies and requirements \cite{booch1994oo}.
 
 \subsection{Conceptual classes}
 	The conceptual classes for the University Room Management System (URMS) are shown in \tablename~\ref{tab:conceptualclasses} below.
@@ -289,7 +294,7 @@ The domain model is visual representation of real objects and conceptual classes
 	\end{table}
 
 	%%%%%% Need to review %%%% @akshay
-	% In the context of a use case ``Searching and Booking a Room'', several conceptual classes are identified to categorise and describe various aspects of the system. Business transactions, represented by actions like ``Booking'', encapsulate user interactions involving reserving a room, implicitly including reservations. Transaction line items, such as ``Booking time frame'', delineate specific details within these transactions, like the duration of the booking. Products or services, exemplified by ``Room'' and ``Navigation Instructions'', signify offerings available for interaction within the system, with rooms being bookable entities and navigation instructions aiding users. Actors, encompassing ``Students'', ``Guests'', ``Professors'', and ``Other university employees'', denote distinct user roles interacting with the system. ``Place'' conceptualises both tangible and virtual locations like the ``University campus'' and the ``Software Frontend'', the latter being the user interface. ``Events'', in this case, ``Bookings'', denote significant occurrences within the system. Physical objects, such as ``Rooms'', ``Buildings'', ``Room display'', ``Door lock'', and ``Movement sensor'', represent tangible entities within the environment. Containers, including ``Room'', ``Building'', and ``Campus'', group entities within larger contexts. ``Things in container'', consisting of items like ``Building'', ``Room'', ``Room display'', ``Door lock'', and ``Movement sensor'', describe components held within these containers. While ``Descriptions'' and ``Catalogue'' are mentioned without specific instances, ``Neighbouring systems'' indicates interactions with external systems. ``Records'', exemplified by ``Booking'', signify formal recordings of user actions. The concept of ``Financial instruments'' refers to unspecified financial tools, and ``Schedules/manuals'', like ``Room schedule'', represent plans or guides outlining specific system aspects.
+
 
 	The conceptual classes helps to clarify how different elements interact within the system. These conceptual classes provide a way to categorize the key aspects of the system. The system's ``business transactions'' involve actions like making room reservations or bookings. Each transaction is further detailed through ``transaction line items,'' which specify aspects such as the timeframe for a room reservation. The ``product/service'' category encompasses items like rooms and navigation instructions, while ``actors'' refers to the different individuals who interact with the system, such as students, professors, guests, and university staff.
 	
@@ -304,7 +309,7 @@ The domain model is visual representation of real objects and conceptual classes
 
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=0.6\textwidth]{Images/DomainModel.png}
+		\includegraphics[width=1\textwidth]{Images/DomainModel.png}
 		\caption{Domain model of the University Room Management System}
 		\label{fig:classdiagram}
 	\end{figure}
@@ -339,9 +344,46 @@ The domain model is visual representation of real objects and conceptual classes
 
 
 %%%%%%%% System Architecture (Akshay)%%%%%%%%%
-%\section{System architecture}
+\section{System architecture}
+	System architecture serves as the foundational blueprint for the design and operation of intricate systems. It encompasses the configuration of components, their interactions, and the pathways through which data flows to accomplish specified objectives \cite{steen2007distributed}. A well-organised architecture promotes modularity, facilitating efficient development and maintenance by compartmentalising the system into manageable modules. Furthermore, it enhances scalability by accommodating growth and demands without disrupting the entire system \cite{kotseruba2016review}. With a focus on reliability, architecture minimises vulnerabilities by distributing tasks and implementing redundancy \cite{steen2007distributed}. By addressing performance, security, and interoperability, architecture ensures a robust and adaptable system that can evolve over time whilst optimising resource utilisation. Essentially, system architecture constitutes the essential framework that underpins a system's efficiency, durability, and effectiveness in a dynamic technological landscape \cite{kotseruba2016review}. \figurename~\ref{fig:systemarchitecture} shows the system architecture of the University Room Management System.
 
 
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\textwidth]{Images/SystemArchitecture.png}
+		\caption{System architecture of the University Room Management System}
+		\label{fig:systemarchitecture}
+	\end{figure}
+
+	The system is bifurcated into three parts, namely, Frontend, Backend, Database and Devices. The Frontend is the user interface which is used to interact with the system. The Backend is the core of the system which is responsible for processing the user requests and generating the response. The Database is used to store the system data such as infrastructure metadata or user data. The Frontend and Backend are connected to each other via APIs. The Backend and Database are connected to each other through network firewall via physical Ethernet connection. The Frontend and Database are not connected to each other directly but via Backend. 
+	The web server, business logic and database are hosted on different on-prim servers and connected to each other using physical connection. As this server are locally deployed, all the processing takes place locally and no data is stored on the cloud. 
+	The figurename~\ref{fig:systemarchitecture} shows multiple rooms, each equipped with devices such as room display, door lock and movement sensor are connected to the local servers via wireless connection through a network Gateway and Rule Engine. Each device inside room may use different communication protocol (i.e. RF, WIFI, Zigbee, Bluetooth, etc.) To deal with all this different protocols, a Gateway is used to convert the data into a common format and connect to local servers. The Rule Engine is used to process the data and generate the response. The Gateway and Rule Engine are connected to each other via physical Ethernet connection.
+	Devices: 
+	IoT devices are indicated in the system architecture are door lock, room display and motion sensor. Each device and their nature is represented in the schemetic using IoT Patterns. The IoT patterns are used to represent the IoT devices and their nature. The IoT patterns are shown in \tablename~\ref{tab:iotpatterns} below.
+
+
+	\begin{table}[ht]
+		\centering
+		\begin{tabular}{|c|Sc|}
+			\hline
+			Mains Powered Device               & \cincludegraphics[width=1cm]{Images/mains-powered-device.png} \\ \hline
+			Period Energy Limited Device       & \cincludegraphics[width=1cm]{Images/period-energy-limited-device.png} \\ \hline
+			Always-On Device                   & \cincludegraphics[width=1cm]{Images/always-on-device.png} \\ \hline
+			Normally-Sleeping Device           & \cincludegraphics[width=1cm]{Images/normally-sleeping-device.png} \\ \hline
+			Rules Engine                       & \cincludegraphics[width=1cm]{Images/rules-engine.png} \\ \hline
+			Event-Based Sensing                & \cincludegraphics[width=1cm]{Images/event-based-sensing.png} \\ \hline
+			Schedule-Based Sensing             & \cincludegraphics[width=1cm]{Images/schedule-based-sensing.png} \\ \hline
+			Device Gateway					   & \cincludegraphics[width=1cm]{Images/device-gateway.png} \\ \hline
+		\end{tabular}
+		\caption{IoT Patterns\protect\footnote{http://www.internetofthingspatterns.com/patterns/}}
+		\label{tab:iotpatterns}
+	\end{table}
+
+	Door Lock: Each room has one door lock which is battery operated which has sleep mode and wake up mode. The only drawback of this is batteries need to be replaced once in a while. The lock has event-based sensing which means it will send the data only when the event occurs. The event in this case is when the door is locked or unlocked or on system request.
+	Room Display: The displays are connected to active power grid as it is always on and required continues power supply. The display shows the booking schedule of the respective room.
+	Motion Sensor: The motion is again always on device, hence connected to power grid. The motion sensor is scheduled-based sensing which means it will send the data periodically as per schedule. The event in this case is when the motion is detected in the room.
+
+	All rooms can be interconnected through a network switch to local servers and subsequently linked to the frontend via APIs. To safeguard against external threats, a firewall filters incoming and outgoing traffic. This firewall is connected to the network switch via a physical Ethernet link.
 
 
 \section{Experiment and Results}
