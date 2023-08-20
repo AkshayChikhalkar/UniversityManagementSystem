@@ -309,7 +309,7 @@ A domain model is a conceptual framework utilized in software engineering to enc
 
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=1\textwidth]{Images/DomainModel.png}
+		\includegraphics[width=1\textwidth]{Figures/DomainModel.pdf}
 		\caption{Domain model of the University Room Management System}
 		\label{fig:classdiagram}
 	\end{figure}
@@ -350,14 +350,17 @@ A domain model is a conceptual framework utilized in software engineering to enc
 
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=1\textwidth]{Images/SystemArchitecture.png}
+		\includegraphics[width=1\textwidth]{Figures/SystemArchitecture.pdf}
 		\caption{System architecture of the University Room Management System}
 		\label{fig:systemarchitecture}
 	\end{figure}
 
 	The system is bifurcated into three parts, namely, Frontend, Backend, Database and Devices. The Frontend is the user interface which is used to interact with the system. The Backend is the core of the system which is responsible for processing the user requests and generating the response. The Database is used to store the system data such as infrastructure metadata or user data. The Frontend and Backend are connected to each other via APIs. The Backend and Database are connected to each other through network firewall via physical Ethernet connection. The Frontend and Database are not connected to each other directly but via Backend. 
-	The web server, business logic and database are hosted on different on-prim servers and connected to each other using physical connection. As this server are locally deployed, all the processing takes place locally and no data is stored on the cloud. 
-	The figurename~\ref{fig:systemarchitecture} shows multiple rooms, each equipped with devices such as room display, door lock and movement sensor are connected to the local servers via wireless connection through a network Gateway and Rule Engine. Each device inside room may use different communication protocol (i.e. RF, WIFI, Zigbee, Bluetooth, etc.) To deal with all this different protocols, a Gateway is used to convert the data into a common format and connect to local servers. The Rule Engine is used to process the data and generate the response. The Gateway and Rule Engine are connected to each other via physical Ethernet connection.
+
+	The web server, business logic and database are hosted on different on-prim servers and connected to each other using physical connection. As this server are locally deployed, all the processing takes place locally and no data is stored on the cloud.
+
+	The \figurename~\ref{fig:systemarchitecture} shows multiple rooms, each equipped with devices such as room display, door lock and movement sensor are connected to the local servers via wireless connection through a network Gateway and Rule Engine. Each device inside room may use different communication protocol (i.e. RF, WIFI, Zigbee, Bluetooth, etc.) To deal with all this different protocols, a Gateway is used to convert the data into a common format and connect to local servers. The Rule Engine is used to process the data and generate the response. The Gateway and Rule Engine are connected to each other via physical Ethernet connection.
+
 	Devices: 
 	IoT devices are indicated in the system architecture are door lock, room display and motion sensor. Each device and their nature is represented in the schemetic using IoT Patterns. The IoT patterns are used to represent the IoT devices and their nature. The IoT patterns are shown in \tablename~\ref{tab:iotpatterns} below.
 
@@ -366,21 +369,23 @@ A domain model is a conceptual framework utilized in software engineering to enc
 		\centering
 		\begin{tabular}{|c|Sc|}
 			\hline
-			Mains Powered Device               & \cincludegraphics[width=1cm]{Images/mains-powered-device.png} \\ \hline
-			Period Energy Limited Device       & \cincludegraphics[width=1cm]{Images/period-energy-limited-device.png} \\ \hline
-			Always-On Device                   & \cincludegraphics[width=1cm]{Images/always-on-device.png} \\ \hline
-			Normally-Sleeping Device           & \cincludegraphics[width=1cm]{Images/normally-sleeping-device.png} \\ \hline
-			Rules Engine                       & \cincludegraphics[width=1cm]{Images/rules-engine.png} \\ \hline
-			Event-Based Sensing                & \cincludegraphics[width=1cm]{Images/event-based-sensing.png} \\ \hline
-			Schedule-Based Sensing             & \cincludegraphics[width=1cm]{Images/schedule-based-sensing.png} \\ \hline
-			Device Gateway					   & \cincludegraphics[width=1cm]{Images/device-gateway.png} \\ \hline
+			Mains Powered Device               & \cincludegraphics[width=1cm]{Figures/mains-powered-device.png} \\ \hline
+			Period Energy Limited Device       & \cincludegraphics[width=1cm]{Figures/period-energy-limited-device.png} \\ \hline
+			Always-On Device                   & \cincludegraphics[width=1cm]{Figures/always-on-device.png} \\ \hline
+			Normally-Sleeping Device           & \cincludegraphics[width=1cm]{Figures/normally-sleeping-device.png} \\ \hline
+			Rules Engine                       & \cincludegraphics[width=1cm]{Figures/rules-engine.png} \\ \hline
+			Event-Based Sensing                & \cincludegraphics[width=1cm]{Figures/event-based-sensing.png} \\ \hline
+			Schedule-Based Sensing             & \cincludegraphics[width=1cm]{Figures/schedule-based-sensing.png} \\ \hline
+			Device Gateway					   & \cincludegraphics[width=1cm]{Figures/device-gateway.png} \\ \hline
 		\end{tabular}
 		\caption{IoT Patterns\protect\footnote{http://www.internetofthingspatterns.com/patterns/}}
 		\label{tab:iotpatterns}
 	\end{table}
 
 	Door Lock: Each room has one door lock which is battery operated which has sleep mode and wake up mode. The only drawback of this is batteries need to be replaced once in a while. The lock has event-based sensing which means it will send the data only when the event occurs. The event in this case is when the door is locked or unlocked or on system request.
+
 	Room Display: The displays are connected to active power grid as it is always on and required continues power supply. The display shows the booking schedule of the respective room.
+
 	Motion Sensor: The motion is again always on device, hence connected to power grid. The motion sensor is scheduled-based sensing which means it will send the data periodically as per schedule. The event in this case is when the motion is detected in the room.
 
 	All rooms can be interconnected through a network switch to local servers and subsequently linked to the frontend via APIs. To safeguard against external threats, a firewall filters incoming and outgoing traffic. This firewall is connected to the network switch via a physical Ethernet link.
