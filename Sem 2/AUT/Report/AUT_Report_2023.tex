@@ -94,11 +94,26 @@ The study aimed to copmare the performance of six classification algorithms and 
     After data processing, out of initial 2889 data samples only 1775 data samples were used for further analysis.
 \input{State of the art.tex}
 
-\section{Increasing classification performance: Feature selection}
-    \subsection{Feature selection}
+\section{Increasing classification performance}
+    One of the method to increase the performance of the classifiers is to reduce the dimensionality of the dataset.
+    \subsection{Dimensionality reduction}
+        Dimensionality reduction is a process of reducing the number of random variables under consideration by obtaining a set of principal variables. It can be divided into feature selection and feature extraction. Feature selection is the process of selecting a subset of relevant features for use in model construction. Feature extraction is the process of transforming data from a high-dimensional space into a space of fewer dimensions. The goal of dimensionality reduction is to reduce the number of random variables under consideration by obtaining a set of principal variables.
+        Feature selection was chosen instead of feature extraction because feature extraction is a more complex process that requires more computational resources and time. Feature selection is a simpler process that can be performed quickly and easily. It also allows for more control over the features that are selected, which can be useful for certain applications. For example, if the goal is to classify GPUs based on their release year, then it would be more useful to select features that are related to the release year rather than features that are not related to the release year. This would allow for a more accurate classification of GPUs based on their release year.
+
+    \subsubsection{Feature selection}
+        Feature selection is the process of selecting a subset of relevant features for use in model construction. This techniques are used for several reasons:
+        \begin{itemize}
+            \item Simplification of models to make them easier to interpret by researchers/users,
+            \item Shorter training times,
+            \item To avoid the curse of dimensionality,
+            \item Enhanced generalization by reducing overfitting (formally, reduction of variance)
+        \end{itemize}
+
+        In this project, the feature selection process was performed using the \emph{SelectKBest} function from the \emph{sklearn.feature\_selection} library. The \emph{SelectKBest} function selects the best features based on univariate statistical tests. The \emph{f\_classif} function was used to compute the ANOVA F-value for the classification task. The \emph{SelectKBest} function was used to select the top 5 features based on the F-value. The top 5 features were then used to train the classifiers and evaluate their performance. The feature selection process was performed for each classifier individually. The results of the feature selection process are shown in Table \ref{table:Feature selection results}. 
+        
+        The results show that the feature selection process improved the performance of all classifiers except for the Random Forest Classifier (RFC). The performance of the RFC decreased by 0.1\% after the feature selection process. The performance of the other classifiers increased by 0.1\% to 0.3\% after the feature selection process. The results also show that the feature selection process improved the performance of the classifiers by reducing the number of features from 16 to 5. This reduction in the number of features resulted in a reduction in the complexity of the classifiers, which in turn resulted in a reduction in the execution time of the classifiers. The execution time of the classifiers was reduced by 0.1\% to 0.3\% after the feature selection process. The results of the feature selection process are shown in Table \ref{table:Feature selection results}. To avoid any external affects such as multithread execution; on the performance of the classifiers, the feature selection process was performed multiple times and classifier was executed over 2000 times.
 
 \section{Advanced classification methods}
-    \subsection{Dimensionality reduction}
 
     \subsection{Hyperparameter optimisation}
 
