@@ -21,6 +21,7 @@
 \setlength{\tabcolsep}{6pt}
 \setlength\headheight{10pt}
 \usepackage{wrapfig}
+\usepackage{longtable}
 
 
 \setlength\parskip{1em plus 0.1em minus 0.2em}
@@ -85,15 +86,12 @@ The current study was motivated by the desire to address the challenge of provid
 
 To address this challenge, I proposed a classification solution that utilizes computer processing to classify technology products based on relevant features. The initial focus was the classification of the Graphics Processing Units based on memory type. However, the goal is to not only classify GPUs but also to expand this solution to other technology products.
 
-The study aimed to copmare the performance of six classification algorithms and implement dimensionality reduction and hyperparameter optimization to further improve their performance for GPU classification based on release year, as release year plays a crucial role in the performance of a GPU and it's evolution. Each year have different characteristics and performance improvement which can impact the overall performance of a GPU. Six Machine Learning algorithms were employed and the script was written in Python programming language. By classifying GPUs based on release year, the study aimed to provide a more accurate and comprehensive evaluation of the products available in the market.
-
-\subsection{Dtaset decsription}
+The study aimed to compare the performance of six classification algorithms and implement dimensionality reduction and hyperparameter optimization to further improve their performance for GPU classification based on release year, as release year plays a crucial role in the performance of a GPU and it's evolution. Each year has different characteristics and performance improvement which can impact the overall performance of a GPU. Six Machine Learning algorithms were employed and the script was written in Python programming language. By classifying GPUs based on release year, the study aimed to provide a more accurate and comprehensive evaluation of the products available in the market.
+%%%%%%%%% Dataset description %%%%%%%%%
+\subsection{Dataset description}
     The dataset used in this study was obtained from Kaggle\footnote{https://www.kaggle.com/code/yukihm/data-mining-undip}. It contains information about 2889 GPUs from 2010 to 2017. The dataset contains 16 features, including the manufacturer, product name, release year, memory size, memory bus width, GPU clock speed, memory clock speed, texture mapping units (TMUs), raster operations pipelines (ROPs), pixel shader details, vertex shader details, integrated graphics processor (IGP) presence, data communication bus type, memory type and GPU chip information. The dataset was downloaded in CSV format and imported into Python for further analysis. The dataset was then split into training and testing sets, with 80\% of the data used for training and 20\% for testing. 
-    This dataset is used to address the problem of GPU classification, where the goal is to categorise GPUs into different classes or categories based on their specifications. This categories includes perfirmance levels, memory capacity, clock speed and other technical attributes. This type of classification can be valuable for technology experts who are looking to make recommendations for technology products. It can also be useful for consumers who are looking to purchase a new GPU and want to compare different options based on their specifications. For industries, it can be helpful for manufacturers and retailers who are looking to classify their products and make recommendations for customers. E-commerce platforms can also use this type of classification to recommend compatible GPUs to users based on their requirements and budget. Further, game optimisation, market analysis, product development and other applications can benefit from this type of classification.
+    This dataset is used to address the problem of GPU classification, where the goal is to categorize GPUs into different classes or categories based on their specifications. This category includes performance levels, memory capacity, clock speed and other technical attributes. This type of classification can be valuable for technology experts who are looking to make recommendations for technology products. It can also be useful for consumers who are looking to purchase a new GPU and want to compare different options based on their specifications. For industries, it can be helpful for manufacturers and retailers who are looking to classify their products and make recommendations for customers. E-commerce platforms can also use this type of classification to recommend compatible GPUs to users based on their requirements and budget. Further, game optimization, market analysis, product development and other applications can benefit from this type of classification.
 
-    \figurename~\ref{fig:datacorrelationmatrix} shows the class diagram of the dataset.
-    
-    appendix~\ref{appdx:cmheatmapdtc} shows the chatbot conversation with GPT-3.
     \begin{figure}[H]
 		\centering
 		\includegraphics[width=0.5\textwidth]{Plots/DataCorelation.png}
@@ -111,33 +109,135 @@ The study aimed to copmare the performance of six classification algorithms and 
 \subsection{Data processing}
     First step towards data processing was involves addressing missing or incomplete data points that could reduce the purity of the dataset. The dataset was checked for missing values and out of 2889 data samples it was found that the dataset contained 1054 missing values in multiple columns. The missing values were replaced with approximated value in the column using interpolation technique. The dataset was then checked for duplicate values and it was found that the dataset contained 7 duplicate values. The duplicate values were removed from the dataset to ensure that the dataset was clean and ready for further analysis. The dataset was then checked using Z-score methode for outliers and it was found that the dataset contained 53 outliers with Z-score of 3 in the memory size column.
     After data processing, out of initial 2889 data samples only 1775 data samples were used for further analysis.
+
+%%%%%%% State of the art %%%%%%%
 \input{State of the art.tex}
 
 \section{Increasing classification performance}
     One of the method to increase the performance of the classifiers is to reduce the dimensionality of the dataset.
+
+%%%%%%%%% Advanced classification methods %%%%%%%%%
+\section{Advanced classification methods}
+    The application of advanced classification methods plays a pivotal role in refining the performance of classifiers. These methods encompass a range of strategic approaches, including dimensionality reduction, hyperparameter tuning, and ensemble learning. The overarching objective of these techniques is to bolster the effectiveness of classifiers. Dimensionality reduction involves optimizing the number of input features, enhancing computational efficiency without compromising crucial data patterns. Hyperparameter tuning, on the other hand, focuses on refining the parameters that guide a classifier's behavior, thereby fine-tuning its predictive capacity. Moreover, ensemble learning integrates multiple classifiers into a cohesive entity, harnessing their combined decision-making capabilities.
+
+    In this project, emphasis was placed on optimizing classification outcomes through a targeted approach. This endeavor comprised two principal processes: dimensionality reduction and hyperparameter optimization. The former sought to distill the most pertinent information from the dataset, eliminating extraneous elements to elevate classification precision. The latter involved meticulous adjustments to the internal settings of the classifier, aligning them more effectively with the inherent data distribution. This dual strategy of dimensionality reduction and hyperparameter optimization resulted in a marked enhancement of classification performance, culminating in outcomes characterized by heightened accuracy and robustness.
+        %%%%%%%%%% Dimensionality reduction %%%%%%%%%
     \subsection{Dimensionality reduction}
         Dimensionality reduction is a process of reducing the number of random variables under consideration by obtaining a set of principal variables. It can be divided into feature selection and feature extraction. Feature selection is the process of selecting a subset of relevant features for use in model construction. Feature extraction is the process of transforming data from a high-dimensional space into a space of fewer dimensions. The goal of dimensionality reduction is to reduce the number of random variables under consideration by obtaining a set of principal variables.
-        Feature selection was chosen instead of feature extraction because feature extraction is a more complex process that requires more computational resources and time. Feature selection is a simpler process that can be performed quickly and easily. It also allows for more control over the features that are selected, which can be useful for certain applications. For example, if the goal is to classify GPUs based on their release year, then it would be more useful to select features that are related to the release year rather than features that are not related to the release year. This would allow for a more accurate classification of GPUs based on their release year.
-
-    \subsubsection{Feature selection}
-        Feature selection is the process of selecting a subset of relevant features for use in model construction. This techniques are used for several reasons:
-        \begin{itemize}
-            \item Simplification of models to make them easier to interpret by researchers/users,
-            \item Shorter training times,
-            \item To avoid the curse of dimensionality,
-            \item Enhanced generalization by reducing overfitting (formally, reduction of variance)
-        \end{itemize}
-
-        In this project, the feature selection process was performed using the \emph{SelectKBest} function from the \emph{sklearn.feature\_selection} library. The \emph{SelectKBest} function selects the best features based on univariate statistical tests. The \emph{f\_classif} function was used to compute the ANOVA F-value for the classification task. The \emph{SelectKBest} function was used to select the top 5 features based on the F-value. The top 5 features were then used to train the classifiers and evaluate their performance. The feature selection process was performed for each classifier individually. The results of the feature selection process are shown in Table \ref{table:Feature selection results}. 
         
-        The results show that the feature selection process improved the performance of all classifiers except for the Random Forest Classifier (RFC). The performance of the RFC decreased by 0.1\% after the feature selection process. The performance of the other classifiers increased by 0.1\% to 0.3\% after the feature selection process. The results also show that the feature selection process improved the performance of the classifiers by reducing the number of features from 16 to 5. This reduction in the number of features resulted in a reduction in the complexity of the classifiers, which in turn resulted in a reduction in the execution time of the classifiers. The execution time of the classifiers was reduced by 0.1\% to 0.3\% after the feature selection process. The results of the feature selection process are shown in Table \ref{table:Feature selection results}. To avoid any external affects such as multithread execution; on the performance of the classifiers, the feature selection process was performed multiple times and classifier was executed over 2000 times.
+        \subsubsection{Feature extraction}
+            The feature extraction was performed using the \emph{PCA} function from the \emph{sklearn.decomposition} library. The \emph{PCA} function was used to reduce the number of features from 16 to 5. The \emph{PCA} function was used to reduce the number of features from 16 to 5.
+            PCA is a statistical procedure that uses an orthogonal transformation to convert a set of observations of possibly correlated variables into a set of values of linearly uncorrelated variables called principal components. This transformation is defined in such a way that the first principal component has the largest possible variance (that is, accounts for as much of the variability in the data as possible), and each succeeding component in turn has the highest variance possible under the constraint that it is orthogonal to the preceding components. The resulting vectors (each being a linear combination of the variables and containing n observations) are an uncorrelated orthogonal basis set. PCA is sensitive to the relative scaling of the original variables.
+            An explained variance ratio of 0.625 was obtained after the feature extraction process. The explained variance ratio is the ratio of variance explained by each of the selected components to the total variance. The higher the explained variance ratio, the better the performance of the classifier. The results of the feature extraction process are shown in \tablename~\ref{table:featureExtractionResults}.
 
-\section{Advanced classification methods}
+            \begin{table}[H]
+                \centering
+                \begin{tabular}{c|c|c|c|c}
+                    \hline
+                    &   PC1 &   PC2 &   PC3 &   PC4 \\  \hline
+                    \hline
+                    Explained Variance Ratio   & 0.625   & 0.233   & 0.109   & 0.032   \\
+                    \hline
+                \end{tabular}
+                \caption{Feature extraction results}
+                \label{table:featureExtractionResults}
+            \end{table}
 
+            The Principal Component Analysis (PCA) results are significantly influenced by the "Explained Variance Ratio". This ratio indicates the proportion of total information in the data that is represented by each principal component. For instance, PCA values such as 0.625, 0.233, 0.109, and 0.032 help us assess the relative importance of components in retaining the original intricacies of the data.
+
+            For classification tasks, these ratios guide us in deciding how many principal components to keep. By selecting the most informative components, we can simplify our data while retaining its important patterns. This can lead to improved classifier performance and faster training. Python libraries like scikit-learn provide tools such as \texttt{explained\_variance\_ratio\_} that allow us to examine these ratios and make informed decisions when constructing classifiers.
+
+
+        \subsubsection{Feature selection}
+            Feature selection is the process of selecting a subset of relevant features for use in model construction. This techniques are used for several reasons:
+            \begin{itemize}
+                \item Simplification of models to make them easier to interpret by researchers/users,
+                \item Shorter training times,
+                \item To avoid the curse of dimensionality,
+                \item Enhanced generalization by reducing overfitting (formally, reduction of variance)
+            \end{itemize}
+
+            In this project, the feature selection process was performed using the \emph{SelectKBest} function from the \emph{sklearn.feature\_selection} library. The \emph{SelectKBest} function selects the best features based on univariate statistical tests. The \emph{f\_classif} function was used to compute the ANOVA F-value for the classification task. The \emph{SelectKBest} function was used to select the top 4 features based on the F-value. The top 4 features were then used to train the classifiers and evaluate their performance. The feature selection process was performed for each classifier individually. The results of the feature selection process are shown in Table \ref{table:featureSelectionResults}. 
+            
+            \begin{table}[H]
+                \centering
+                \begin{tabular}{c|c|c|c|c}
+                    \hline
+                    &   Feature 1 &   Feature 2 &   Feature 3 &   Feature 4 \\  \hline
+                    \hline
+                    Selected Features 	&tmu	& gpuClock	& memClock	& memBusWidth   \\
+                    \hline
+                \end{tabular}
+                \caption{Feature selection results}
+                \label{table:featureSelectionResults}
+            \end{table}
+
+        \begin{table}[H]
+            \centering
+            \begin{tabular}{|c|c|c|c|c|c|c|c|}
+                \hline
+                    \textbf{Algorithm} &\textbf{Accuracy} &\textbf{Precision} &\textbf{Recall} &\textbf{F1} &\textbf{E.T. (Sec)} \\ \hline
+                    \hline
+                    DTC & 0.423   & 0.436   & 0.423  & 0.422  & 0.056 \\ \hline
+                    GNB & 0.245   & 0.225   & 0.245  & 0.222  & 0.028 \\ \hline
+                    KNN & 0.363   & 0.385   & 0.363  & 0.364  & 0.046 \\ \hline
+                    LDA & 0.245   & 0.206   & 0.245  & 0.203  & 0.026 \\ \hline
+                    RFC & 0.439   & 0.460   & 0.439  & 0.437  & 2.591 \\ \hline
+                    SVM & 0.310   & 0.294   & 0.310  & 0.267  & 1.245 \\
+                \hline
+            \end{tabular}
+            \caption{Performance after dimensionality reduction}
+            \label{tab:performanceAfterDimensionalityReduction}
+        \end{table}
+        The results from the \tablename~\ref{tab:performanceAfterDimensionalityReduction} show that the feature selection process improved the performance of all classifiers except for the Random Forest Classifier (RFC). The performance of the RFC decreased by 0.1\% after the feature selection process. The performance of the other classifiers increased by 0.1\% to 0.3\% after the feature selection process. The results also show that the feature selection process improved the performance of the classifiers by reducing the number of features from 16 to 5. This reduction in the number of features resulted in a reduction in the complexity of the classifiers, which in turn resulted in a reduction in the execution time of the classifiers. The execution time of the classifiers was reduced by 0.1\% to 0.3\% after the feature selection process. The results of the feature selection process are shown in \tablename~\ref{tab:performanceAfterDimensionalityReduction}. To avoid any external affects such as multithread execution; on the performance of the classifiers, the feature selection process was performed multiple times and classifier was executed over 2000 times.
+    %%%%%%%%%% Hyperparameter optimization %%%%%%%%%
     \subsection{Hyperparameter optimisation}
+        Hyperparameter optimization is the process of finding the best hyperparameters for a given model. Hyperparameters are parameters that are not directly learned within the estimator. In scikit-learn they are passed as arguments to the constructor of the estimator classes. In this project, we used the \emph{GridSearchCV} function from the \emph{sklearn.model\_selection} library to perform hyperparameter optimization. The \emph{GridSearchCV} function is used to perform an exhaustive search over specified parameter values for an estimator. The \emph{GridSearchCV} tries possible combination of hyperparameters values until the best combination is found. Refer to \appendixname~\ref{appdx:bestParameters} The \emph{GridSearchCV} function was used to perform hyperparameter optimization for each classifier individually. The results of the hyperparameter optimization process are shown in Table \ref{table:hyperparameterOptimizationResults}.
 
-\section{Reduction complexity and execution time}
-\section{Conclusion}
+        \begin{table}[H]
+            \centering
+            \begin{tabular}{|c|c|c|c|c|c|c|c|}
+                \hline
+                    \textbf{Algorithm} &\textbf{Accuracy} &\textbf{Precision} &\textbf{Recall} &\textbf{F1} &\textbf{E.T. (Sec)} \\ \hline
+                    \hline
+                    DTC     & 0.423   & 0.436   & 0.423  & 0.422 &  0.428  \\ \hline
+                    GNB     & 0.245   & 0.225   & 0.245  & 0.222 &  0.028  \\ \hline
+                    KNN     & 0.451   & 0.466   & 0.451  & 0.446 &  0.180  \\ \hline
+                    LDA     & 0.245   & 0.206   & 0.245  & 0.203 &  0.027  \\ \hline
+                    RFC     & 0.434   & 0.460   & 0.434  & 0.434 & 113.458 \\ \hline
+                    SVM     & 0.394   & 0.368   & 0.394  & 0.363 &  7.244  \\
+                \hline
+            \end{tabular}
+            \caption{Classifier performance after hyperparameter optimization}
+            \label{table:hyperparameterOptimizationResults}
+        \end{table}
+
+
+%%%%%%%%%%%%%% Results %%%%%%%%%%%%%%        
+\section{Experiment and results}
+    
+\begin{figure}[H]
+    \centering
+    
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Plots/AccuracyofAlgorithmsinDifferentPhases.png}
+        \caption{Accuracy}
+        \label{fig:accuracyOfAlgorithmsInDifferentphases}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Plots/ExecutionTimeofAlgorithmsinDifferentPhases.png}
+        \caption{Execution time}
+        \label{fig:executionTimeOfAlgorithmsInDifferentphases}
+    \end{subfigure}
+    
+    \caption{Algorithm performance in different phases}
+\end{figure}
+
+%%%%%%%%%%%%%% Discussion %%%%%%%%%%%%%%
+\section{Discussion}
 
 
 
@@ -154,107 +254,123 @@ The study aimed to copmare the performance of six classification algorithms and 
 \newpage
 \appendix
 
-    \begin{table}[H]	
-        \begin{center}
-            \begin{tabular}[H]{ |m{1cm}|m{1cm}|m{1.2cm}|m{1.2cm}|m{1cm}|m{2cm}|m{3cm}|m{2cm}|}
-                \hline
-                \textbf{Item}&\textbf{Mean} &\textbf{Variance} &\textbf{Std. Dev.}  &\textbf{No.}  &\textbf{Left} &\textbf{Right} &\textbf{Scale}\\ \hline
-                1	&1,8	&0,2	&0,4	&5	&annoying	            &enjoyable	                &Attractiveness             \\ \hline
-                2	&2,2	&0,2	&0,4	&5	&not                    &understandable	            &understandable         \\ \hline
-                3	&0,6	&2,3	&1,5	&5	&creative	            &dull	                    &Novelty        \\ \hline
-                4	&3,0	&0,0	&0,0	&5	&easy to learn	        &difficult to learn	        &Perspicuity        \\ \hline
-                5	&2,2	&0,2	&0,4	&5	&valuable	            &inferior	                &Stimulation        \\ \hline
-                6	&0,8	&1,7	&1,3	&5	&boring	                &exciting	                &Stimulation        \\ \hline
-                7	&1,8	&0,7	&0,8	&5	&not interesting	    &interesting	            &Stimulation        \\ \hline
-                8	&2,2	&1,2	&1,1	&5	&unpredictable	        &predictable	            &Dependability      \\ \hline
-                9	&2,2	&1,7	&1,3	&5	&fast	                &slow	                    &Efficiency     \\ \hline
-                10	&-1,4	&2,3	&1,5	&5	&inventive	            &conventional	            &Novelty        \\ \hline
-                11	&2,4	&0,3	&0,5	&5	&obstructive	        &supportive	                &Dependability      \\ \hline
-                12	&2,2	&0,7	&0,8	&5	&good	                &bad	                    &Attractiveness     \\ \hline
-                13	&1,2	&5,7	&2,4	&5	&complicated	        &easy	                    &Perspicuity        \\ \hline
-                14	&2,0	&1,0	&1,0	&5	&unlikable	            &pleasing	                &Attractiveness     \\ \hline
-                15	&-1,2	&2,7	&1,6	&5	&usual	                &leading edge	            &Novelty        \\ \hline
-                16	&2,0	&0,5	&0,7	&5	&unpleasant	            &pleasant	                &Attractiveness     \\ \hline
-                17	&2,4	&0,8	&0,9	&5	&secure	                &not secure	                &Dependability      \\ \hline
-                18	&1,8	&0,2	&0,4	&5	&motivating	            &demotivating	            &Stimulation        \\ \hline
-                19	&2,2	&1,7	&1,3	&5	&meets			        &does not meet				&Dependability      \\ \hline
-                20	&2,6	&0,3	&0,5	&5	&inefficient	        &efficient	                &Efficiency     \\ \hline
-                21	&1,8	&0,7	&0,8	&5	&clear	                &confusing	                &Perspicuity        \\ \hline
-                22	&2,2	&0,7	&0,8	&5	&impractical	        &practical	                &Efficiency     \\ \hline
-                23	&2,0	&1,0	&1,0	&5	&organized	            &cluttered	                &Efficiency     \\ \hline
-                24	&2,0	&1,5	&1,2	&5	&attractive	            &unattractive	            &Attractiveness     \\ \hline
-                25	&2,2	&0,7	&0,8	&5	&friendly	            &unfriendly	                &Attractiveness     \\ \hline
-                26	&-1,4	&2,3	&1,5	&5	&conservative	        &innovative	                &Novelty        \\ 
-                \hline
-            \end{tabular}
-        \end{center}
-        \caption{Mean value per item}
-        \label{table:Mean value per item}
-    \end{table}
+% \begin{figure}[H]
+%     \centering   
+%     \begin{subfigure}{0.4\textwidth}
+% 		\centering
+% 		\includegraphics[width=\linewidth]{Plots/CM_Heatmap_DTC.png}
+% 		\caption{Confusion matrix of the DTC (optimized))}
+% 		\label{appdx:cmheatmapdtc}
+% 	\end{subfigure}
 
-    \begin{figure}[H]
-		\centering
-		\includegraphics[width=1\textwidth]{Plots/CM_Heatmap_DTC.png}
-		\caption{Domain model of the University Room Management System}
+% 	\begin{subfigure}{0.4\textwidth}
+% 		\centering
+% 		\includegraphics[width=\linewidth]{Plots/CM_Heatmap_GNB.png}
+% 		\caption{Confusion matrix of the GNB (optimized))}
+% 		\label{appx:cmheatmapgnb}
+% 	\end{subfigure}
+
+%     \begin{subfigure}{0.5\textwidth}
+% 		\centering
+% 		\includegraphics[width=\linewidth]{Plots/CM_Heatmap_KNN.png}
+% 		\caption{Confusion matrix of the KNN (optimized))}
+% 		\label{appx:cmheatmapknn}
+% 	\end{subfigure}
+
+%     \begin{subfigure}{0.5\textwidth}
+% 		\centering
+% 		\includegraphics[width=\linewidth]{Plots/CM_Heatmap_LDA.png}
+% 		\caption{Confusion matrix of the LDA)}
+% 		\label{appx:cmheatmaplda}
+% 	\end{subfigure}
+
+%     \begin{subfigure}{0.5\textwidth}
+% 		\centering
+% 		\includegraphics[width=\linewidth]{Plots/CM_Heatmap_RFC.png}
+% 		\caption{Confusion matrix of the RFC (optimized))}
+% 		\label{appx:cmheatmaprfc}
+% 	\end{subfigure}
+
+%     \begin{subfigure}{0.5\textwidth}
+% 		\centering
+% 		\includegraphics[width=\linewidth]{Plots/CM_Heatmap_SVM.png}
+% 		\caption{Confusion matrix of the SVM (optimized))}
+% 		\label{appx:cmheatmapsvm}
+% 	\end{subfigure}
+
+%     \caption{Algorithm performance in different phases}
+% \end{figure}
+
+
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}{0.4\textwidth}
+        \centering
+		\includegraphics[width=\linewidth]{Plots/CM_Heatmap_DTC.png}
+		\caption{DTC (optimized)}
 		\label{appdx:cmheatmapdtc}
-	\end{figure}
-	\begin{figure}[H]
-		\centering
-		\includegraphics[width=1\textwidth]{Plots/CM_Heatmap_GNB.png}
-		\caption{Domain model of the University Room Management System}
+    \end{subfigure}%
+    \begin{subfigure}{0.4\textwidth}
+        \centering
+		\includegraphics[width=\linewidth]{Plots/CM_Heatmap_GNB.png}
+		\caption{GNB (optimized)}
 		\label{appx:cmheatmapgnb}
-	\end{figure}
-    \begin{figure}[H]
-		\centering
-		\includegraphics[width=1\textwidth]{Plots/CM_Heatmap_KNN.png}
-		\caption{Domain model of the University Room Management System}
+    \end{subfigure}\\
+    \begin{subfigure}{0.4\textwidth}
+        \centering
+		\includegraphics[width=\linewidth]{Plots/CM_Heatmap_KNN.png}
+		\caption{KNN (optimized)}
 		\label{appx:cmheatmapknn}
-	\end{figure}
-    \begin{figure}[H]
-		\centering
-		\includegraphics[width=1\textwidth]{Plots/CM_Heatmap_LDA.png}
-		\caption{Domain model of the University Room Management System}
+    \end{subfigure}%
+    \begin{subfigure}{0.4\textwidth}
+        \centering
+		\includegraphics[width=\linewidth]{Plots/CM_Heatmap_LDA.png}
+		\caption{LDA)}
 		\label{appx:cmheatmaplda}
-	\end{figure}
-    \begin{figure}[H]
-		\centering
-		\includegraphics[width=1\textwidth]{Plots/CM_Heatmap_RFC.png}
-		\caption{Domain model of the University Room Management System}
+    \end{subfigure}\\
+    \begin{subfigure}{0.4\textwidth}
+        \centering
+		\includegraphics[width=\linewidth]{Plots/CM_Heatmap_RFC.png}
+		\caption{RFC (optimized)}
 		\label{appx:cmheatmaprfc}
-	\end{figure}
-    \begin{figure}[H]
-		\centering
-		\includegraphics[width=1\textwidth]{Plots/CM_Heatmap_SVM.png}
-		\caption{Domain model of the University Room Management System}
+    \end{subfigure}%
+    \begin{subfigure}{0.4\textwidth}
+        \centering
+		\includegraphics[width=\linewidth]{Plots/CM_Heatmap_SVM.png}
+		\caption{SVM (optimized)}
 		\label{appx:cmheatmapsvm}
-	\end{figure}
+    \end{subfigure}
+    \caption{Confusion matrix of all the six classifiers}
+    \label{appdx:confusionMatrixOfAllTheSixClassifiers}
+\end{figure}
 
-    \begin{tabular}{lrrrrrrr}
+    \begin{longtable}{lrrrrrr}
         \hline
-         Algorithm   &   CV\_Accuracy &   Accuracy &   Precision &   Recall &       F1 &   Execution Time &   Iterations \\
+         Algorithm   &   CV\_Accuracy &   Accuracy &   Precision &   Recall &       F1 &   Execution Time \\ \hline
+         RFC         &      0.440845 &   0.473239 &    0.482281 & 0.473239 & 0.467693 &       0.172644   \\
+         DTC         &      0.400704 &   0.442254 &    0.449104 & 0.442254 & 0.435644 &       0.00341725 \\
+         SVM         &      0.280986 &   0.28169  &    0.253084 & 0.28169  & 0.219221 &       0.157703   \\
+         KNN         &      0.360563 &   0.357746 &    0.379279 & 0.357746 & 0.351769 &       0.00796819 \\
+         LDA         &      0.261972 &   0.24507  &    0.205744 & 0.24507  & 0.202823 &       0.00258398 \\
+         GNB         &      0.228873 &   0.205634 &    0.182054 & 0.205634 & 0.18264  &       0.00265884 \\
+         RFC         &      0.440845 &   0.473239 &    0.482281 & 0.473239 & 0.467693 &       0.170908   \\
+         DTC         &      0.400704 &   0.442254 &    0.449104 & 0.442254 & 0.435644 &       0.00406098 \\
+         SVM         &      0.280986 &   0.28169  &    0.253084 & 0.28169  & 0.219221 &       0.161214   \\
+         KNN         &      0.360563 &   0.357746 &    0.379279 & 0.357746 & 0.351769 &       0.0083189  \\
+         LDA         &      0.261972 &   0.24507  &    0.205744 & 0.24507  & 0.202823 &       0.00339317 \\
+         GNB         &      0.228873 &   0.205634 &    0.182054 & 0.205634 & 0.18264  &       0.00308394 \\
+         RFC         &      0.440845 &   0.473239 &    0.482281 & 0.473239 & 0.467693 &       0.187191   \\
+         DTC         &      0.400704 &   0.442254 &    0.449104 & 0.442254 & 0.435644 &       0.00370598 \\
+         SVM         &      0.280986 &   0.28169  &    0.253084 & 0.28169  & 0.219221 &       0.16112    \\
+         KNN         &      0.360563 &   0.357746 &    0.379279 & 0.357746 & 0.351769 &       0.00886011 \\
+         LDA         &      0.261972 &   0.24507  &    0.205744 & 0.24507  & 0.202823 &       0.00250292 \\
+         GNB         &      0.228873 &   0.205634 &    0.182054 & 0.205634 & 0.18264  &       0.00361419 \\
         \hline
-         RFC         &      0.440845 &   0.473239 &    0.482281 & 0.473239 & 0.467693 &       0.172644   &            0 \\
-         DTC         &      0.400704 &   0.442254 &    0.449104 & 0.442254 & 0.435644 &       0.00341725 &            0 \\
-         SVM         &      0.280986 &   0.28169  &    0.253084 & 0.28169  & 0.219221 &       0.157703   &            0 \\
-         KNN         &      0.360563 &   0.357746 &    0.379279 & 0.357746 & 0.351769 &       0.00796819 &            0 \\
-         LDA         &      0.261972 &   0.24507  &    0.205744 & 0.24507  & 0.202823 &       0.00258398 &            0 \\
-         GNB         &      0.228873 &   0.205634 &    0.182054 & 0.205634 & 0.18264  &       0.00265884 &            0 \\
-         RFC         &      0.440845 &   0.473239 &    0.482281 & 0.473239 & 0.467693 &       0.170908   &            1 \\
-         DTC         &      0.400704 &   0.442254 &    0.449104 & 0.442254 & 0.435644 &       0.00406098 &            1 \\
-         SVM         &      0.280986 &   0.28169  &    0.253084 & 0.28169  & 0.219221 &       0.161214   &            1 \\
-         KNN         &      0.360563 &   0.357746 &    0.379279 & 0.357746 & 0.351769 &       0.0083189  &            1 \\
-         LDA         &      0.261972 &   0.24507  &    0.205744 & 0.24507  & 0.202823 &       0.00339317 &            1 \\
-         GNB         &      0.228873 &   0.205634 &    0.182054 & 0.205634 & 0.18264  &       0.00308394 &            1 \\
-         RFC         &      0.440845 &   0.473239 &    0.482281 & 0.473239 & 0.467693 &       0.187191   &            2 \\
-         DTC         &      0.400704 &   0.442254 &    0.449104 & 0.442254 & 0.435644 &       0.00370598 &            2 \\
-         SVM         &      0.280986 &   0.28169  &    0.253084 & 0.28169  & 0.219221 &       0.16112    &            2 \\
-         KNN         &      0.360563 &   0.357746 &    0.379279 & 0.357746 & 0.351769 &       0.00886011 &            2 \\
-         LDA         &      0.261972 &   0.24507  &    0.205744 & 0.24507  & 0.202823 &       0.00250292 &            2 \\
-         GNB         &      0.228873 &   0.205634 &    0.182054 & 0.205634 & 0.18264  &       0.00361419 &            2 \\
-        \hline
-    \end{tabular}
+        \caption{State-of-the-art classifiers performance}
+        \label{appdx:stateOfTheArtClassifiersPerformance}
+    \end{longtable}
         
-    \begin{tabular}{lrrrrrr}
+    \begin{longtable}{lrrrrrr}
         \hline
          Algorithm   &   CV\_Accuracy &   Accuracy &   Precision &   Recall &       F1 &   Execution Time \\
         \hline
@@ -277,9 +393,11 @@ The study aimed to copmare the performance of six classification algorithms and 
          LDA         &      0.261268 &   0.24507  &    0.205744 & 0.24507  & 0.202823 &        0.013967  \\
          GNB         &      0.273239 &   0.24507  &    0.224912 & 0.24507  & 0.221897 &        0.0185232 \\
         \hline
-    \end{tabular}
-        
-    \begin{tabular}{lrrrrrr}
+        \caption{Classifiers performance after dimensionality reduction}
+        \label{appdx:classifierPerformanceAfterDimensionalityReduction}
+    \end{longtable}
+            
+    \begin{longtable}{lrrrrrr}
         \hline
          Algorithm   &   CV\_Accuracy &   Accuracy &   Precision &   Recall &       F1 &   Execution Time \\
         \hline
@@ -302,7 +420,88 @@ The study aimed to copmare the performance of six classification algorithms and 
          LDA         &      0.261268 &   0.24507  &    0.205744 & 0.24507  & 0.202823 &        0.0146387 \\
          GNB         &      0.273239 &   0.24507  &    0.224912 & 0.24507  & 0.221897 &        0.0194271 \\
         \hline
-    \end{tabular}
+        \caption{Classifiers performance after dimensionality reduction and hyperparameter optimization}
+        \label{appdx:classifierPerformanceAfterDimensionalityReductionAndHyperparameterOptimization}
+    \end{longtable}
+
+
+    \begin{table}[H]
+        \begin{center}
+        \begin{longtable}{lrrl}
+            \hline
+             Classifier   &   Accuracy &   Std test score & params                                                            \\
+            \hline
+             RFC          &   0.407746 &       0.0120749  & \{'max\_depth': None, 'min\_samples\_split': 2, 'n\_estimators': 100\}  \\
+             RFC          &   0.412676 &       0.0128702  & \{'max\_depth': None, 'min\_samples\_split': 2, 'n\_estimators': 200\}  \\
+             RFC          &   0.414789 &       0.0124789  & \{'max\_depth': None, 'min\_samples\_split': 2, 'n\_estimators': 300\}  \\
+             RFC          &   0.415493 &       0.0231432  & \{'max\_depth': None, 'min\_samples\_split': 5, 'n\_estimators': 100\}  \\
+             RFC          &   0.416197 &       0.0257211  & \{'max\_depth': None, 'min\_samples\_split': 5, 'n\_estimators': 200\}  \\
+             RFC          &   0.419014 &       0.0202885  & \{'max\_depth': None, 'min\_samples\_split': 5, 'n\_estimators': 300\}  \\
+             RFC          &   0.405634 &       0.0219782  & \{'max\_depth': None, 'min\_samples\_split': 10, 'n\_estimators': 100\} \\
+             RFC          &   0.409859 &       0.0155249  & \{'max\_depth': None, 'min\_samples\_split': 10, 'n\_estimators': 200\} \\
+             RFC          &   0.409155 &       0.0211737  & \{'max\_depth': None, 'min\_samples\_split': 10, 'n\_estimators': 300\} \\
+             RFC          &   0.419014 &       0.0131748  & \{'max\_depth': 10, 'min\_samples\_split': 2, 'n\_estimators': 100\}    \\
+             RFC          &   0.423239 &       0.00928937 & \{'max\_depth': 10, 'min\_samples\_split': 2, 'n\_estimators': 200\}    \\
+             RFC          &   0.423239 &       0.0112235  & \{'max\_depth': 10, 'min\_samples\_split': 2, 'n\_estimators': 300\}    \\
+             RFC          &   0.414085 &       0.0125186  & \{'max\_depth': 10, 'min\_samples\_split': 5, 'n\_estimators': 100\}    \\
+             RFC          &   0.416901 &       0.0138358  & \{'max\_depth': 10, 'min\_samples\_split': 5, 'n\_estimators': 200\}    \\
+             RFC          &   0.419718 &       0.0164252  & \{'max\_depth': 10, 'min\_samples\_split': 5, 'n\_estimators': 300\}    \\
+             RFC          &   0.4      &       0.0181739  & \{'max\_depth': 10, 'min\_samples\_split': 10, 'n\_estimators': 100\}   \\
+             RFC          &   0.400704 &       0.0193374  & \{'max\_depth': 10, 'min\_samples\_split': 10, 'n\_estimators': 200\}   \\
+             RFC          &   0.405634 &       0.0210562  & \{'max\_depth': 10, 'min\_samples\_split': 10, 'n\_estimators': 300\}   \\
+             RFC          &   0.407746 &       0.0145009  & \{'max\_depth': 20, 'min\_samples\_split': 2, 'n\_estimators': 100\}    \\
+             RFC          &   0.414789 &       0.0177319  & \{'max\_depth': 20, 'min\_samples\_split': 2, 'n\_estimators': 200\}    \\
+             RFC          &   0.416901 &       0.0167541  & \{'max\_depth': 20, 'min\_samples\_split': 2, 'n\_estimators': 300\}    \\
+             RFC          &   0.414085 &       0.024456   & \{'max\_depth': 20, 'min\_samples\_split': 5, 'n\_estimators': 100\}    \\
+             RFC          &   0.414789 &       0.0235047  & \{'max\_depth': 20, 'min\_samples\_split': 5, 'n\_estimators': 200\}    \\
+             RFC          &   0.417606 &       0.0208432  & \{'max\_depth': 20, 'min\_samples\_split': 5, 'n\_estimators': 300\}    \\
+             RFC          &   0.406338 &       0.0232074  & \{'max\_depth': 20, 'min\_samples\_split': 10, 'n\_estimators': 100\}   \\
+             RFC          &   0.407746 &       0.0151695  & \{'max\_depth': 20, 'min\_samples\_split': 10, 'n\_estimators': 200\}   \\
+             RFC          &   0.408451 &       0.0200426  & \{'max\_depth': 20, 'min\_samples\_split': 10, 'n\_estimators': 300\}   \\
+             DTC          &   0.371127 &       0.0119095  & \{'max\_depth': None, 'min\_samples\_split': 2\}                       \\
+             DTC          &   0.378169 &       0.0187117  & \{'max\_depth': None, 'min\_samples\_split': 5\}                       \\
+             DTC          &   0.357042 &       0.0208432  & \{'max\_depth': None, 'min\_samples\_split': 10\}                      \\
+             DTC          &   0.359155 &       0.0248981  & \{'max\_depth': 10, 'min\_samples\_split': 2\}                         \\
+             DTC          &   0.358451 &       0.0241294  & \{'max\_depth': 10, 'min\_samples\_split': 5\}                         \\
+             DTC          &   0.347887 &       0.0175915  & \{'max\_depth': 10, 'min\_samples\_split': 10\}                        \\
+             DTC          &   0.376056 &       0.0167244  & \{'max\_depth': 20, 'min\_samples\_split': 2\}                         \\
+             DTC          &   0.378873 &       0.0214298  & \{'max\_depth': 20, 'min\_samples\_split': 5\}                         \\
+             DTC          &   0.357042 &       0.0208432  & \{'max\_depth': 20, 'min\_samples\_split': 10\}                        \\
+             SVM          &   0.259155 &       0.00653072 & \{'C': 0.1, 'gamma': 'scale'\}                                      \\
+             SVM          &   0.257042 &       0.00995925 & \{'C': 0.1, 'gamma': 'auto'\}                                       \\
+             SVM          &   0.311972 &       0.0192345  & \{'C': 1, 'gamma': 'scale'\}                                        \\
+             SVM          &   0.316197 &       0.0189488  & \{'C': 1, 'gamma': 'auto'\}                                         \\
+             SVM          &   0.360563 &       0.0176197  & \{'C': 10, 'gamma': 'scale'\}                                       \\
+             SVM          &   0.361972 &       0.0165755  & \{'C': 10, 'gamma': 'auto'\}                                        \\
+             KNN          &   0.390141 &       0.0205798  & \{'n\_neighbors': 3, 'weights': 'uniform'\}                          \\
+             KNN          &   0.407042 &       0.0203617  & \{'n\_neighbors': 3, 'weights': 'distance'\}                         \\
+             KNN          &   0.376761 &       0.0175351  & \{'n\_neighbors': 5, 'weights': 'uniform'\}                          \\
+             KNN          &   0.411972 &       0.0125976  & \{'n\_neighbors': 5, 'weights': 'distance'\}                         \\
+             KNN          &   0.373239 &       0.0159036  & \{'n\_neighbors': 7, 'weights': 'uniform'\}                          \\
+             KNN          &   0.417606 &       0.0176197  & \{'n\_neighbors': 7, 'weights': 'distance'\}                         \\
+             LDA          &   0.261268 &       0.0222027  & \{\}                                                                \\
+             GNB          &   0.273239 &       0.0181739  & \{\}                                                                \\
+            \hline
+        \end{longtable}
+        \caption{Possible combination of the best parameters for each classifier}
+        \label{appdx:bestParameters}
+        \end{center}
+    \end{table}
+        
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Plots/DatagpuClockvsmemClock.png}
+    \caption{GPU release year vs GPU memory clock}
+    \label{appdx:gpuReleaseYearvsGPUMemoryClock}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Plots/DataPariPlot.png}
+    \caption{Parallel plot of the data}
+    \label{appdx:parallelPlotOfTheData}
+\end{figure}
+
 \newpage
 \bibliographystyle{IEEEtran}
 \bibliography{ref}

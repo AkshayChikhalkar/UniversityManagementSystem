@@ -20,13 +20,42 @@
 	
 	\subsubsection{Linear Discriminant Analysis (LDA)}
 	In statistics, linear discriminant analysis (LDA), normal discriminant analysis (NDA), or discriminant function analysis is a generalization of Fisher's linear discriminant, a method used in statistics, pattern recognition and machine learning to find a linear combination of features that characterizes or separates two or more classes of objects or events. The resulting combination may be used as a linear classifier, or, more commonly, for dimensionality reduction before later classification.
-		
+
+
+	\begin{table}
+		\centering
+		\begin{tabular}{|c|c|c|c|c|c|c|c|}
+			\hline
+				\textbf{Algorithm} &\textbf{Accuracy} &\textbf{Precision} &\textbf{Recall} &\textbf{F1} &\textbf{E.T. (Sec)} \\ \hline
+				\hline
+				DTC   & 0.442   & 0.449   & 0.442  & 0.436 & 0.004 \\ \hline
+				GNB   & 0.206   & 0.182   & 0.206  & 0.183 & 0.003 \\ \hline
+				KNN   & 0.358   & 0.379   & 0.358  & 0.352 & 0.008 \\ \hline
+				LDA   & 0.245   & 0.206   & 0.245  & 0.203 & 0.003 \\ \hline
+				RFC   & 0.473   & 0.482   & 0.473  & 0.468 & 0.182 \\ \hline
+				SVM   & 0.282   & 0.253   & 0.282  & 0.219 & 0.168 \\ 
+			\hline
+		\end{tabular}
+		\caption{Classifier performance before dimensionality reduction and hyperparameter optimization}
+		\label{tab:performance_before}
+	\end{table}
+
+
+
+
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.5\textwidth]{Plots/Performance_before.png}
+		\caption{Classifier performance before dimensionality reduction and hyperparameter optimization}
+		\label{fig:performance_before}
+	\end{figure}
+
 \subsection{Evaluation methods}
 	The evaluation methods used in this project are:
 	\subsubsection{Cross-validation}
 		Cross-validation is performed using the Stratified K-Fold technique to evaluate the performance of each classifier. Metrics such as \emph{accuracy}, \emph{precision}, \emph{recall} and \emph{F1-score} are calculated and recorded. The results are aggregated and displayed in tabular form, providing insights into the initial accuracy and performance of each classifier. The results are also visualized using a bar chart to provide a more intuitive comparison between the classifiers. 
 	\subsubsection{Confusion matrix}
-		Confusion matrices are generated to visualize the classification performance of each refined classifier. Heatmaps of the correlation matrix for the original features are also created to show correlations among features. 
+		Confusion matrices are generated to visualize the classification performance of each refined classifier. Heatmap of the correlation matrix for the original features are also created to show correlations among features. 
 
-	The evaluation is performed before and after the feature selection and hyperparameter optimisation process to determine the effect of feature selection and hyperparameter optimisation on the performance of each classifier. 
+	The evaluation is performed before and after the feature selection and hyperparameter optimization process to determine the effect of feature selection and hyperparameter optimization on the performance of each classifier. 
 	
