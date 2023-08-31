@@ -20,7 +20,6 @@
 \setlength{\arrayrulewidth}{0.1mm}
 \setlength{\tabcolsep}{6pt}
 \setlength\headheight{10pt}
-\usepackage{wrapfig}
 
 
 \setlength\parskip{1em plus 0.1em minus 0.2em}
@@ -90,24 +89,6 @@ The study aimed to copmare the performance of six classification algorithms and 
 \subsection{Dtaset decsription}
     The dataset used in this study was obtained from Kaggle\footnote{https://www.kaggle.com/code/yukihm/data-mining-undip}. It contains information about 2889 GPUs from 2010 to 2017. The dataset contains 16 features, including the manufacturer, product name, release year, memory size, memory bus width, GPU clock speed, memory clock speed, texture mapping units (TMUs), raster operations pipelines (ROPs), pixel shader details, vertex shader details, integrated graphics processor (IGP) presence, data communication bus type, memory type and GPU chip information. The dataset was downloaded in CSV format and imported into Python for further analysis. The dataset was then split into training and testing sets, with 80\% of the data used for training and 20\% for testing. 
     This dataset is used to address the problem of GPU classification, where the goal is to categorise GPUs into different classes or categories based on their specifications. This categories includes perfirmance levels, memory capacity, clock speed and other technical attributes. This type of classification can be valuable for technology experts who are looking to make recommendations for technology products. It can also be useful for consumers who are looking to purchase a new GPU and want to compare different options based on their specifications. For industries, it can be helpful for manufacturers and retailers who are looking to classify their products and make recommendations for customers. E-commerce platforms can also use this type of classification to recommend compatible GPUs to users based on their requirements and budget. Further, game optimisation, market analysis, product development and other applications can benefit from this type of classification.
-
-    \figurename~\ref{fig:datacorrelationmatrix} shows the class diagram of the dataset.
-    
-    appendix~\ref{appdx:cmheatmapdtc} shows the chatbot conversation with GPT-3.
-    \begin{figure}[H]
-		\centering
-		\includegraphics[width=0.5\textwidth]{Plots/DataCorelation.png}
-		\caption{Data correlation matrix of the dataset}
-		\label{fig:datacorrelationmatrix}
-	\end{figure}
-
-    % \begin{wrapfigure}{r}{0.5\textwidth}
-    %     \centering
-    %     \includegraphics[width=0.5\textwidth]{Plots/DataCorelation.png}
-    %     \caption{Data correlation matrix of the dataset}
-    %     \label{fig:datacorrelationmatrix}
-    % \end{wrapfigure}
-
 \subsection{Data processing}
     First step towards data processing was involves addressing missing or incomplete data points that could reduce the purity of the dataset. The dataset was checked for missing values and out of 2889 data samples it was found that the dataset contained 1054 missing values in multiple columns. The missing values were replaced with approximated value in the column using interpolation technique. The dataset was then checked for duplicate values and it was found that the dataset contained 7 duplicate values. The duplicate values were removed from the dataset to ensure that the dataset was clean and ready for further analysis. The dataset was then checked using Z-score methode for outliers and it was found that the dataset contained 53 outliers with Z-score of 3 in the memory size column.
     After data processing, out of initial 2889 data samples only 1775 data samples were used for further analysis.
@@ -152,7 +133,7 @@ The study aimed to copmare the performance of six classification algorithms and 
 
 
 \newpage
-\appendix
+\section*{Appendix}
 
     \begin{table}[H]	
         \begin{center}
@@ -192,42 +173,7 @@ The study aimed to copmare the performance of six classification algorithms and 
         \label{table:Mean value per item}
     \end{table}
 
-    \begin{figure}[H]
-		\centering
-		\includegraphics[width=1\textwidth]{Plots/CM_Heatmap_DTC.png}
-		\caption{Domain model of the University Room Management System}
-		\label{appdx:cmheatmapdtc}
-	\end{figure}
-	\begin{figure}[H]
-		\centering
-		\includegraphics[width=1\textwidth]{Plots/CM_Heatmap_GNB.png}
-		\caption{Domain model of the University Room Management System}
-		\label{appx:cmheatmapgnb}
-	\end{figure}
-    \begin{figure}[H]
-		\centering
-		\includegraphics[width=1\textwidth]{Plots/CM_Heatmap_KNN.png}
-		\caption{Domain model of the University Room Management System}
-		\label{appx:cmheatmapknn}
-	\end{figure}
-    \begin{figure}[H]
-		\centering
-		\includegraphics[width=1\textwidth]{Plots/CM_Heatmap_LDA.png}
-		\caption{Domain model of the University Room Management System}
-		\label{appx:cmheatmaplda}
-	\end{figure}
-    \begin{figure}[H]
-		\centering
-		\includegraphics[width=1\textwidth]{Plots/CM_Heatmap_RFC.png}
-		\caption{Domain model of the University Room Management System}
-		\label{appx:cmheatmaprfc}
-	\end{figure}
-    \begin{figure}[H]
-		\centering
-		\includegraphics[width=1\textwidth]{Plots/CM_Heatmap_SVM.png}
-		\caption{Domain model of the University Room Management System}
-		\label{appx:cmheatmapsvm}
-	\end{figure}
+
 \newpage
 \bibliographystyle{IEEEtran}
 \bibliography{ref}
