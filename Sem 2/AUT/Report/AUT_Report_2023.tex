@@ -87,9 +87,8 @@ The current study was motivated by the desire to address the challenge of provid
 To address this challenge, I proposed a classification solution that utilizes computer processing to classify technology products based on relevant features. The initial focus was the classification of the Graphics Processing Units based on memory type. However, the goal is to not only classify GPUs but also to expand this solution to other technology products.
 
 The study aimed to compare the performance of six classification algorithms and implement dimensionality reduction and hyperparameter optimization to further improve their performance for GPU classification based on release year, as release year plays a crucial role in the performance of a GPU and it's evolution. Each year has different characteristics and performance improvement which can impact the overall performance of a GPU. Six Machine Learning algorithms were employed and the script was written in Python programming language. By classifying GPUs based on release year, the study aimed to provide a more accurate and comprehensive evaluation of the products available in the market.
-
 %%%%%%%%% Dataset description %%%%%%%%%
-\section{Dataset description}
+\subsection{Dataset description}
     The dataset used in this study was obtained from Kaggle\footnote{https://www.kaggle.com/code/yukihm/data-mining-undip}. It contains information about 2889 GPUs from 2010 to 2017. The dataset contains 16 features, including the manufacturer, product name, release year, memory size, memory bus width, GPU clock speed, memory clock speed, texture mapping units (TMUs), raster operations pipelines (ROPs), pixel shader details, vertex shader details, integrated graphics processor (IGP) presence, data communication bus type, memory type and GPU chip information. The dataset was downloaded in CSV format and imported into Python for further analysis. The dataset was then split into training and testing sets, with 80\% of the data used for training and 20\% for testing. 
     This dataset is used to address the problem of GPU classification, where the goal is to categorize GPUs into different classes or categories based on their specifications. This category includes performance levels, memory capacity, clock speed and other technical attributes. This type of classification can be valuable for technology experts who are looking to make recommendations for technology products. It can also be useful for consumers who are looking to purchase a new GPU and want to compare different options based on their specifications. For industries, it can be helpful for manufacturers and retailers who are looking to classify their products and make recommendations for customers. E-commerce platforms can also use this type of classification to recommend compatible GPUs to users based on their requirements and budget. Further, game optimization, market analysis, product development and other applications can benefit from this type of classification.
 
@@ -114,6 +113,8 @@ The study aimed to compare the performance of six classification algorithms and 
 %%%%%%% State of the art %%%%%%%
 \input{State of the art.tex}
 
+\section{Increasing classification performance}
+    One of the method to increase the performance of the classifiers is to reduce the dimensionality of the dataset.
 
 %%%%%%%%% Advanced classification methods %%%%%%%%%
 \section{Advanced classification methods}
@@ -177,141 +178,77 @@ The study aimed to compare the performance of six classification algorithms and 
                 \hline
                     \textbf{Algorithm} &\textbf{Accuracy} &\textbf{Precision} &\textbf{Recall} &\textbf{F1} &\textbf{E.T. (Sec)} \\ \hline
                     \hline
-                    DTC    & 0.423   & 0.436   & 0.423  & 0.422   & 0.000 \\ \hline
-                    GNB    & 0.245   & 0.225   & 0.245  & 0.222   & 0.001 \\ \hline
-                    KNN    & 0.363   & 0.385   & 0.363  & 0.364   & 0.007 \\ \hline
-                    LDA    & 0.245   & 0.206   & 0.245  & 0.203   & 0.000 \\ \hline
-                    RFC    & 0.439   & 0.460   & 0.439  & 0.437   & 0.011 \\ \hline
-                    SVM    & 0.310   & 0.294   & 0.310  & 0.267   & 0.057 \\                    
+                    DTC & 0.423   & 0.436   & 0.423  & 0.422  & 0.056 \\ \hline
+                    GNB & 0.245   & 0.225   & 0.245  & 0.222  & 0.028 \\ \hline
+                    KNN & 0.363   & 0.385   & 0.363  & 0.364  & 0.046 \\ \hline
+                    LDA & 0.245   & 0.206   & 0.245  & 0.203  & 0.026 \\ \hline
+                    RFC & 0.439   & 0.460   & 0.439  & 0.437  & 2.591 \\ \hline
+                    SVM & 0.310   & 0.294   & 0.310  & 0.267  & 1.245 \\
                 \hline
             \end{tabular}
             \caption{Performance after dimensionality reduction}
             \label{tab:performanceAfterDimensionalityReduction}
         \end{table}
-
-        \begin{figure}
-            \centering
-            \includegraphics[width=0.5\textwidth]{Plots/Performance_after_dimensionality_reduction.png}
-            \caption{Classifier performance after dimensionality reduction}
-            \label{fig:performanceAfterDimensionalityReduction}
-        \end{figure}
-
         The results from the \tablename~\ref{tab:performanceAfterDimensionalityReduction} show that the feature selection process improved the performance of all classifiers except for the Random Forest Classifier (RFC). The performance of the RFC decreased by 0.1\% after the feature selection process. The performance of the other classifiers increased by 0.1\% to 0.3\% after the feature selection process. The results also show that the feature selection process improved the performance of the classifiers by reducing the number of features from 16 to 5. This reduction in the number of features resulted in a reduction in the complexity of the classifiers, which in turn resulted in a reduction in the execution time of the classifiers. The execution time of the classifiers was reduced by 0.1\% to 0.3\% after the feature selection process. The results of the feature selection process are shown in \tablename~\ref{tab:performanceAfterDimensionalityReduction}. To avoid any external affects such as multithread execution; on the performance of the classifiers, the feature selection process was performed multiple times and classifier was executed over 2000 times.
     %%%%%%%%%% Hyperparameter optimization %%%%%%%%%
-    \subsection{Hyperparameter optimization}
-        Hyperparameter optimization is the process of finding the best hyperparameter for a given model. Hyperparameter are parameters that are not directly learned within the estimator. In Scikit-learn they are passed as arguments to the constructor of the estimator classes. In this project, we used the \emph{GridSearchCV} function from the \emph{sklearn.model\_selection} library to perform hyperparameter optimization. The \emph{GridSearchCV} function is used to perform an exhaustive search over specified parameter values for an estimator. The \emph{GridSearchCV} tries possible combination of hyperparameter values until the best combination is found. Refer to \appendixname~\ref{appdx:bestParameters} The \emph{GridSearchCV} function was used to perform hyperparameter optimization for each classifier individually. The results of the hyperparameter optimization process are shown in Table \ref{table:hyperparameterOptimizationResults}.
+    \subsection{Hyperparameter optimisation}
+        Hyperparameter optimization is the process of finding the best hyperparameters for a given model. Hyperparameters are parameters that are not directly learned within the estimator. In scikit-learn they are passed as arguments to the constructor of the estimator classes. In this project, we used the \emph{GridSearchCV} function from the \emph{sklearn.model\_selection} library to perform hyperparameter optimization. The \emph{GridSearchCV} function is used to perform an exhaustive search over specified parameter values for an estimator. The \emph{GridSearchCV} tries possible combination of hyperparameters values until the best combination is found. Refer to \appendixname~\ref{appdx:bestParameters} The \emph{GridSearchCV} function was used to perform hyperparameter optimization for each classifier individually. The results of the hyperparameter optimization process are shown in Table \ref{table:hyperparameterOptimizationResults}.
 
-        % \begin{table}[H]
-        %     \centering
-        %     \begin{tabular}{|c|c|c|c|c|c|c|c|}
-        %         \hline
-        %             \textbf{Algorithm} &\textbf{Accuracy} &\textbf{Precision} &\textbf{Recall} &\textbf{F1} &\textbf{E.T. (Sec)} \\ \hline
-        %             \hline
-        %             DTC    & 0.423   & 0.436   & 0.423  & 0.422   & 0.000  \\ \hline
-        %             GNB    & 0.245   & 0.225   & 0.245  & 0.222   & 0.001  \\ \hline
-        %             KNN    & 0.451   & 0.466   & 0.451  & 0.446   & 0.002  \\ \hline
-        %             LDA    & 0.245   & 0.206   & 0.245  & 0.203   & 0.000  \\ \hline
-        %             RFC    & 0.434   & 0.460   & 0.434  & 0.434   & 0.018  \\ \hline
-        %             SVM    & 0.394   & 0.368   & 0.394  & 0.363   & 0.056  \\
-        %         \hline
-        %     \end{tabular}
-        %     \caption{Classifier performance after hyperparameter optimization}
-        %     \label{table:hyperparameterOptimizationResults}
-        % \end{table}
-
-        % \begin{figure}[H]
-        %     \centering
-        %     \includegraphics[width=0.5\textwidth]{Plots/Performance_after_dimensionality_reduction_and_HP_optimization.png}
-        %     \caption{Classifier performance after hyperparameter optimization}
-        %     \label{fig:performanceAfterHyperparameterOptimization}
-        % \end{figure}
-
-
-        \begin{figure}[H]
+        \begin{table}[H]
             \centering
-            \begin{subfigure}{0.45\textwidth}
-                \centering
-                \includegraphics[width=\linewidth]{Plots/Performance_after_dimensionality_reduction_and_HP_optimization.png}
-                \caption{Classifier performance after hyperparameter optimization}
-                \label{fig:performanceAfterHyperparameterOptimization}
-            \end{subfigure}%
-            \begin{subfigure}{0.55\textwidth}
-                \centering
-                \small
-                \begin{tabular}{|c|c|c|c|c|c|c|c|}
+            \begin{tabular}{|c|c|c|c|c|c|c|c|}
+                \hline
+                    \textbf{Algorithm} &\textbf{Accuracy} &\textbf{Precision} &\textbf{Recall} &\textbf{F1} &\textbf{E.T. (Sec)} \\ \hline
                     \hline
-                        \textbf{Algorithm} &\textbf{Accuracy} &\textbf{Precision} &\textbf{Recall} &\textbf{F1} &\textbf{E.T. (Sec)} \\ \hline
-                        \hline
-                        DTC    & 0.423   & 0.436   & 0.423  & 0.422   & 0.000  \\ \hline
-                        GNB    & 0.245   & 0.225   & 0.245  & 0.222   & 0.001  \\ \hline
-                        KNN    & 0.451   & 0.466   & 0.451  & 0.446   & 0.002  \\ \hline
-                        LDA    & 0.245   & 0.206   & 0.245  & 0.203   & 0.000  \\ \hline
-                        RFC    & 0.434   & 0.460   & 0.434  & 0.434   & 0.018  \\ \hline
-                        SVM    & 0.394   & 0.368   & 0.394  & 0.363   & 0.056  \\
-                    \hline
-                \end{tabular}
-                \caption{Classifier performance after hyperparameter optimization}
-                \label{table:hyperparameterOptimizationResults}
-            \end{subfigure}
-        \end{figure}
-        
-          
+                    DTC     & 0.423   & 0.436   & 0.423  & 0.422 &  0.428  \\ \hline
+                    GNB     & 0.245   & 0.225   & 0.245  & 0.222 &  0.028  \\ \hline
+                    KNN     & 0.451   & 0.466   & 0.451  & 0.446 &  0.180  \\ \hline
+                    LDA     & 0.245   & 0.206   & 0.245  & 0.203 &  0.027  \\ \hline
+                    RFC     & 0.434   & 0.460   & 0.434  & 0.434 & 113.458 \\ \hline
+                    SVM     & 0.394   & 0.368   & 0.394  & 0.363 &  7.244  \\
+                \hline
+            \end{tabular}
+            \caption{Classifier performance after hyperparameter optimization}
+            \label{table:hyperparameterOptimizationResults}
+        \end{table}
+
+
 %%%%%%%%%%%%%% Results %%%%%%%%%%%%%%        
 \section{Experiment and results}
-    All six classifier were examined and compared in terms of their performance. The performance of each classifier was evaluated using the following metrics: accuracy, precision, recall, F1-score and execution time. The results of the evaluation are shown in \tablename~\ref{tab:performance_before}. The results show that the Random Forest Classifier (RFC) performed the best, with an accuracy of 0.473, precision of 0.482, recall of 0.473 and F1-score of 0.468. The Decision Tree Classifier (DTC) performed the worst, with an accuracy of 0.442, precision of 0.449, recall of 0.442 and F1-score of 0.436. The results also show that the Random Forest Classifier (RFC) had the highest execution time of 0.172 seconds, while the Decision Tree Classifier (DTC) had the lowest execution time of 0.003 seconds. The results of the evaluation are shown in \tablename~\ref{tab:performance_before}. To avoid any external affects such as multithread execution; on the performance of the classifiers each classifier was executed 99 times.
     
-    The execution was performed on a system with the following specifications: Apple MacBook Air 13" (2021) with Apple M1 chip, 16GB RAM and 256GB SSD, macOS Sonoma beta 14.0 (23A5328b), Python 3.9.13, scikit-learn 0.24.2, NumPy 1.21.1, Pandas 1.3.1, Matplotlib 3.4.2, Seaborn 0.11.1, Jupyter Notebook 6.4.0, Visual Studio Code 1.81.1. Python was not natively optimized for apple M1 silicon and running through x86 translation layer (emulator) Rosetta 2, for further details about the execution information refer to \figurename~\ref{appdx:executionDetails}. Because of how modern SOCs handle multithreading, the execution time might have been affected by the number of threads used \emph{(Total threads \= 31)}.
-
-    The classifier performance analysis reveals intriguing insights into accuracy across different configurations, namely dimensionality reduction, hyperparameter optimization, and raw data utilization. As shown in \figurename~\ref{fig:accuracyOfAlgorithmsInDifferentphases}, the classifiers' accuracies vary notably under distinct settings, for further details refer to \tablename~\ref{appdx:classifierPerformanceInAllThreePhases}.
-
-    Among the classifiers, the K-Nearest Neighbors (KNN) stands out, showcasing its sensitivity to parameter adjustments. Its accuracy increases by around 291\% with hyperparameter optimization, signifying its responsiveness to tuning. Interestingly, while the Support Vector Machine (SVM) demonstrates decent accuracy with raw data, its accuracy substantially improves by approximately 535\% and 400\% with hyperparameter optimization and dimensionality reduction, respectively.
-
-    Dimensionality reduction and hyperparameter optimization consistently bolster classifier performance across the board. These techniques elevate accuracy by an impressive range of approximately 214\% to 606\%. This reaffirms the importance of strategic feature selection and parameter tuning in enhancing classifier outcomes.
-
-    Furthermore, the results shed light on the substantial impact of these enhancements compared to the raw data setting. For instance, the Decision Tree Classifier (DTC) and Random Forest Classifier (RFC) both witness accuracy increments of about 582\% in the dimensionality reduction and hyperparameter optimization setups. In contrast, the Gaussian Naive Bayes (GNB) classifier, while generally displaying lower accuracy values, experiences notable accuracy gains of roughly 410\% with both dimensionality reduction and hyperparameter optimization.
-
-    These findings underline the significance of tailored approaches in achieving optimal classifier performance, and they emphasize the intricate interplay between classifiers, preprocessing techniques, and parameter optimization. The data-driven insights presented in this study can guide the selection of appropriate strategies for specific classification tasks, facilitating informed decisions for maximizing accuracy and overall model efficacy.
-
-    \begin{figure}[H]
+\begin{figure}[H]
+    \centering
+    
+    \begin{subfigure}{0.45\textwidth}
         \centering
-        
-        \begin{subfigure}{0.45\textwidth}
-            \centering
-            \includegraphics[width=\linewidth]{Plots/AccuracyofAlgorithmsinDifferentPhases.png}
-            \caption{Accuracy}
-            \label{fig:accuracyOfAlgorithmsInDifferentphases}
-        \end{subfigure}
-        \hfill
-        \begin{subfigure}{0.45\textwidth}
-            \centering
-            \includegraphics[width=\linewidth]{Plots/ExecutionTimeofAlgorithmsinDifferentPhases.png}
-            \caption{Execution time}
-            \label{fig:executionTimeOfAlgorithmsInDifferentphases}
-        \end{subfigure}
-        
-        \caption{Algorithm performance in different phases}
-    \end{figure}
-
-    The comparison of classifier performance sheds light on the execution times across various phases for each algorithm, revealing valuable insights into their computational efficiency. The execution times of each algorithm in different phases are concisely presented in \figurename~\ref{fig:executionTimeOfAlgorithmsInDifferentphases}, for further details refer to \tablename~\ref{appdx:classifierPerformanceInAllThreePhases}.
-
-    Among the classifiers, a distinct variation in execution times becomes evident based on the algorithmic phase. Notably, the Decision Tree Classifier (DTC) demonstrates minimal execution times in both the Dimensionality Reduction and Hyperparameter Optimization phases, suggesting its computational efficiency in these contexts. Similarly, the Gaussian Naive Bayes (GNB) and Linear Discriminant Analysis (LDA) algorithms showcase negligible execution times in certain phases, indicating their lightweight computational requirements in those settings.
-
-    Conversely, other classifiers like the Random Forest Classifier (RFC) and Support Vector Machine (SVM) exhibit marginally higher execution times, particularly noticeable during the Hyperparameter Optimization phase. Of particular interest, the SVM classifier displays a comparatively higher execution time in the Hyperparameter Optimization phase, possibly reflecting its more intricate computations during parameter tuning.
-
-    Interestingly, the K-Nearest Neighbors (KNN) algorithm shows variable execution times, with slightly longer durations observed during the Dimensionality Reduction phase compared to the Hyperparameter Optimization phase. This discrepancy suggests that the KNN algorithm might be more responsive to computational demands introduced by dimensionality reduction techniques.
-
-    In summary, the presented execution time comparison underscores the diverse computational complexities inherent in different classifiers and algorithmic phases. These findings hold relevance for algorithm selection, allowing practitioners to factor in computational efficiency alongside classifier accuracy, especially within resource-constrained settings. Delving further into the relationship between execution times and classifier performance could provide deeper insights into the intricate interplay between computational resources and predictive prowess.
-
+        \includegraphics[width=\linewidth]{Plots/AccuracyofAlgorithmsinDifferentPhases.png}
+        \caption{Accuracy}
+        \label{fig:accuracyOfAlgorithmsInDifferentphases}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Plots/ExecutionTimeofAlgorithmsinDifferentPhases.png}
+        \caption{Execution time}
+        \label{fig:executionTimeOfAlgorithmsInDifferentphases}
+    \end{subfigure}
+    
+    \caption{Algorithm performance in different phases}
+\end{figure}
 
 %%%%%%%%%%%%%% Discussion %%%%%%%%%%%%%%
 \section{Discussion}
-    The results discussion highlights key insights from the classifier performance and execution time analysis. The K-Nearest Neighbors (KNN) classifier's sensitivity to parameter adjustments is evident, with an accuracy boost of approximately 291\% through hyperparameter optimization. Similarly, the Support Vector Machine (SVM) benefits significantly from advanced techniques, showing accuracy increases of around 535\% and 400\% with hyperparameter optimization and dimensionality reduction, respectively.
 
-    The study underlines the consistent value of dimensionality reduction and hyperparameter optimization in enhancing classifier performance, resulting in accuracy gains ranging from 214\% to 606\%. Notably, the Decision Tree Classifier (DTC) demonstrates efficient execution times of 0 seconds in key phases, showcasing its computational advantage. Meanwhile, slightly higher execution times for algorithms like the Random Forest Classifier (RFC) and SVM during parameter optimization reflect their complexity.
 
-    The execution was performed on a system with the following specifications: Apple MacBook Air 13" (2021) with Apple M1 chip, 16GB RAM and 256GB SSD, macOS Sonoma beta 14.0 (23A5328b), Python 3.9.13, scikit-learn 0.24.2, NumPy 1.21.1, Pandas 1.3.1, Matplotlib 3.4.2, Seaborn 0.11.1, Jupyter Notebook 6.4.0, Visual Studio Code 1.81.1. Python was not natively optimized for Apple M1 silicon and was running through the x86 translation layer (emulator) Rosetta 2. The execution time might have been affected by the number of threads used (Total threads = 31), considering the multithreading handling of modern SOCs.
 
-    These insights emphasize the need for a balanced approach in algorithm selection. Efficient classifiers with adequate accuracy, such as the DTC, might be preferred in resource-limited settings. In contrast, algorithms like SVM could thrive when given the computational resources to optimize parameters. This holistic understanding guides informed decisions, optimizing classifier performance within varying constraints.
+
+
+
+
+
+
+
+
 
 
 \newpage
@@ -409,29 +346,84 @@ The study aimed to compare the performance of six classification algorithms and 
 
     \begin{longtable}{lrrrrrr}
         \hline
-         Algorithm   & Phase                        & Accuracy   & Execution Time (Sec) \\ \hline
-         DTC         & Dimensionality Reduction     & 0.423      & 0     \\
-         GNB         & Dimensionality Reduction     & 0.245      & 0.001 \\
-         KNN         & Dimensionality Reduction     & 0.363      & 0.007 \\
-         LDA         & Dimensionality Reduction     & 0.245      & 0     \\
-         RFC         & Dimensionality Reduction     & 0.439      & 0.011 \\
-         SVM         & Dimensionality Reduction     & 0.31       & 0.057 \\
-         DTC         & Hyperparameter Optimization  & 0.423      & 0     \\
-         GNB         & Hyperparameter Optimization  & 0.245      & 0.001 \\
-         KNN         & Hyperparameter Optimization  & 0.451      & 0.002 \\
-         LDA         & Hyperparameter Optimization  & 0.245      & 0     \\
-         RFC         & Hyperparameter Optimization  & 0.434      & 0.018 \\
-         SVM         & Hyperparameter Optimization  & 0.394      & 0.056 \\
-         DTC         & Raw                          & 0.062      & 0.001 \\
-         GNB         & Raw                          & 0.048      & 0.001 \\
-         KNN         & Raw                          & 0.115      & 0.007 \\
-         LDA         & Raw                          & 0.065      & 0.001 \\
-         RFC         & Raw                          & 0.062      & 0.007 \\
-         SVM         & Raw                          & 0.062      & 0.057 \\
+         Algorithm   &   CV\_Accuracy &   Accuracy &   Precision &   Recall &       F1 &   Execution Time \\ \hline
+         RFC         &      0.440845 &   0.473239 &    0.482281 & 0.473239 & 0.467693 &       0.172644   \\
+         DTC         &      0.400704 &   0.442254 &    0.449104 & 0.442254 & 0.435644 &       0.00341725 \\
+         SVM         &      0.280986 &   0.28169  &    0.253084 & 0.28169  & 0.219221 &       0.157703   \\
+         KNN         &      0.360563 &   0.357746 &    0.379279 & 0.357746 & 0.351769 &       0.00796819 \\
+         LDA         &      0.261972 &   0.24507  &    0.205744 & 0.24507  & 0.202823 &       0.00258398 \\
+         GNB         &      0.228873 &   0.205634 &    0.182054 & 0.205634 & 0.18264  &       0.00265884 \\
+         RFC         &      0.440845 &   0.473239 &    0.482281 & 0.473239 & 0.467693 &       0.170908   \\
+         DTC         &      0.400704 &   0.442254 &    0.449104 & 0.442254 & 0.435644 &       0.00406098 \\
+         SVM         &      0.280986 &   0.28169  &    0.253084 & 0.28169  & 0.219221 &       0.161214   \\
+         KNN         &      0.360563 &   0.357746 &    0.379279 & 0.357746 & 0.351769 &       0.0083189  \\
+         LDA         &      0.261972 &   0.24507  &    0.205744 & 0.24507  & 0.202823 &       0.00339317 \\
+         GNB         &      0.228873 &   0.205634 &    0.182054 & 0.205634 & 0.18264  &       0.00308394 \\
+         RFC         &      0.440845 &   0.473239 &    0.482281 & 0.473239 & 0.467693 &       0.187191   \\
+         DTC         &      0.400704 &   0.442254 &    0.449104 & 0.442254 & 0.435644 &       0.00370598 \\
+         SVM         &      0.280986 &   0.28169  &    0.253084 & 0.28169  & 0.219221 &       0.16112    \\
+         KNN         &      0.360563 &   0.357746 &    0.379279 & 0.357746 & 0.351769 &       0.00886011 \\
+         LDA         &      0.261972 &   0.24507  &    0.205744 & 0.24507  & 0.202823 &       0.00250292 \\
+         GNB         &      0.228873 &   0.205634 &    0.182054 & 0.205634 & 0.18264  &       0.00361419 \\
         \hline
-        \caption{Classifier performance in all three phases}
-        \label{appdx:classifierPerformanceInAllThreePhases}
+        \caption{State-of-the-art classifiers performance}
+        \label{appdx:stateOfTheArtClassifiersPerformance}
     \end{longtable}
+        
+    \begin{longtable}{lrrrrrr}
+        \hline
+         Algorithm   &   CV\_Accuracy &   Accuracy &   Precision &   Recall &       F1 &   Execution Time \\
+        \hline
+         RFC         &      0.407746 &   0.439437 &    0.45987  & 0.439437 & 0.437043 &        1.25214   \\
+         DTC         &      0.371127 &   0.422535 &    0.435677 & 0.422535 & 0.422189 &        0.0277729 \\
+         SVM         &      0.311972 &   0.309859 &    0.2939   & 0.309859 & 0.266544 &        0.665152  \\
+         KNN         &      0.376761 &   0.36338  &    0.384735 & 0.36338  & 0.363729 &        0.0385151 \\
+         LDA         &      0.261268 &   0.24507  &    0.205744 & 0.24507  & 0.202823 &        0.0127187 \\
+         GNB         &      0.273239 &   0.24507  &    0.224912 & 0.24507  & 0.221897 &        0.0145471 \\
+         RFC         &      0.407746 &   0.439437 &    0.45987  & 0.439437 & 0.437043 &        1.25332   \\
+         DTC         &      0.371127 &   0.422535 &    0.435677 & 0.422535 & 0.422189 &        0.0303597 \\
+         SVM         &      0.311972 &   0.309859 &    0.2939   & 0.309859 & 0.266544 &        0.67257   \\
+         KNN         &      0.376761 &   0.36338  &    0.384735 & 0.36338  & 0.363729 &        0.0449691 \\
+         LDA         &      0.261268 &   0.24507  &    0.205744 & 0.24507  & 0.202823 &        0.0141079 \\
+         GNB         &      0.273239 &   0.24507  &    0.224912 & 0.24507  & 0.221897 &        0.01702   \\
+         RFC         &      0.407746 &   0.439437 &    0.45987  & 0.439437 & 0.437043 &        1.36698   \\
+         DTC         &      0.371127 &   0.422535 &    0.435677 & 0.422535 & 0.422189 &        0.0315924 \\
+         SVM         &      0.311972 &   0.309859 &    0.2939   & 0.309859 & 0.266544 &        0.686508  \\
+         KNN         &      0.376761 &   0.36338  &    0.384735 & 0.36338  & 0.363729 &        0.0410869 \\
+         LDA         &      0.261268 &   0.24507  &    0.205744 & 0.24507  & 0.202823 &        0.013967  \\
+         GNB         &      0.273239 &   0.24507  &    0.224912 & 0.24507  & 0.221897 &        0.0185232 \\
+        \hline
+        \caption{Classifiers performance after dimensionality reduction}
+        \label{appdx:classifierPerformanceAfterDimensionalityReduction}
+    \end{longtable}
+            
+    \begin{longtable}{lrrrrrr}
+        \hline
+         Algorithm   &   CV\_Accuracy &   Accuracy &   Precision &   Recall &       F1 &   Execution Time \\
+        \hline
+         RFC         &      0.423239 &   0.459155 &    0.487308 & 0.459155 & 0.456431 &       51.2526    \\
+         DTC         &      0.378873 &   0.430986 &    0.444931 & 0.430986 & 0.428687 &        0.193149  \\
+         SVM         &      0.361972 &   0.394366 &    0.368064 & 0.394366 & 0.363465 &        3.54028   \\
+         KNN         &      0.417606 &   0.450704 &    0.465625 & 0.450704 & 0.445552 &        0.133158  \\
+         LDA         &      0.261268 &   0.24507  &    0.205744 & 0.24507  & 0.202823 &        0.0122411 \\
+         GNB         &      0.273239 &   0.24507  &    0.224912 & 0.24507  & 0.221897 &        0.015172  \\
+         RFC         &      0.423239 &   0.459155 &    0.487308 & 0.459155 & 0.456431 &       52.1694    \\
+         DTC         &      0.378873 &   0.430986 &    0.444931 & 0.430986 & 0.428687 &        0.204587  \\
+         SVM         &      0.361972 &   0.394366 &    0.368064 & 0.394366 & 0.363465 &        3.50349   \\
+         KNN         &      0.417606 &   0.450704 &    0.465625 & 0.450704 & 0.445552 &        0.154317  \\
+         LDA         &      0.261268 &   0.24507  &    0.205744 & 0.24507  & 0.202823 &        0.0139561 \\
+         GNB         &      0.273239 &   0.24507  &    0.224912 & 0.24507  & 0.221897 &        0.018435  \\
+         RFC         &      0.423239 &   0.459155 &    0.487308 & 0.459155 & 0.456431 &       56.1888    \\
+         DTC         &      0.378873 &   0.430986 &    0.444931 & 0.430986 & 0.428687 &        0.209001  \\
+         SVM         &      0.361972 &   0.394366 &    0.368064 & 0.394366 & 0.363465 &        3.53441   \\
+         KNN         &      0.417606 &   0.450704 &    0.465625 & 0.450704 & 0.445552 &        0.142963  \\
+         LDA         &      0.261268 &   0.24507  &    0.205744 & 0.24507  & 0.202823 &        0.0146387 \\
+         GNB         &      0.273239 &   0.24507  &    0.224912 & 0.24507  & 0.221897 &        0.0194271 \\
+        \hline
+        \caption{Classifiers performance after dimensionality reduction and hyperparameter optimization}
+        \label{appdx:classifierPerformanceAfterDimensionalityReductionAndHyperparameterOptimization}
+    \end{longtable}
+
 
     \begin{table}[H]
         \begin{center}
@@ -508,13 +500,6 @@ The study aimed to compare the performance of six classification algorithms and 
     \includegraphics[width=0.7\textwidth]{Plots/DataPariPlot.png}
     \caption{Parallel plot of the data}
     \label{appdx:parallelPlotOfTheData}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.7\textwidth]{ExucutionDetails.png}
-    \caption{Execution details}
-    \label{appdx:executionDetails}
 \end{figure}
 
 \newpage
