@@ -15,6 +15,7 @@
 \usepackage{color}
 \usepackage{array}
 \usepackage{framed}
+\usepackage[figuresleft]{rotating}
 \newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
 \definecolor{yellow}{rgb}{0.85, 1,1}
 \definecolor{pastleyellow}{rgb}{1, 0.98,0.63}
@@ -72,6 +73,38 @@ akshay.chikhalkar@stud.th-owl.de, sean.nagel@stud.th-owl.de, mohamed.kassabji@st
 \newpage
 \section{Introduction}
 
+\section{System description}
+
+As already mentioned in the introduction, this document focuses on the proposed University Room Management System (URMS).
+As can b guessed from the name, the system should provide multiple features regarding management of a university's rooms.
+Users of the system shall be students and employees of the university. Additionally, guests can also use the system, although they will not have access to the system's complete functionality.
+
+The basic functionality of the system should allow all users to search and find rooms. The system shall also be able to recommend rooms based of some user defined criteria. The users are able to look at room schedules.
+The system should also provide users with navigational instructions to rooms.
+
+Students and university staff should be able to book rooms for lectures or learning groups. Employees of the university should be granted more privileges regarding room booking than students.
+
+The university's rooms are fitted with IOT technologies.
+Electronic locks are built into the rooms' doors. Members of the university are able to unlock these doors, if they booked the room.
+The rooms are also fitted with movement sensors, to analyze if the room is currently occupied.
+Additionally, rooms might have a display, which shows the room's schedule and availability.
+
+\begin{sidewaysfigure}
+	\includegraphics[width=\linewidth]{Figures/BPMN_StudentBooksRoom_1.png}
+	\caption{Business Process ``Student Books Room'' (Part 1)}
+	\label{fig:bpmn_1}
+\end{sidewaysfigure}
+
+\begin{sidewaysfigure}
+	\includegraphics[width=\linewidth]{Figures/BPMN_StudentBooksRoom_2.png}
+	\caption{Business Process ``Student Books Room'' (Part 2)}
+	\label{fig:bpmn_2}
+\end{sidewaysfigure}
+
+To further describe the functionality of the URMS a specific business process should be examined. This business process describes a student booking and using a room. The business process according to Business Process Model and Notation (BPMN) is shown in \figurename~\ref{fig:bpmn_1}-\ref{fig:bpmn_2}
+
+% TODO BPMN description
+
 \section{Use cases and user stories}
 
 To further identify the desired functionality of the University Room Management System, two use cases and three user stories were identified and formulated.
@@ -80,7 +113,7 @@ One use case and two user stories will be described in more detail in this secti
 The identified use cases are \emph{Searching and booking a room} and \emph{Getting navigation instructions to a room}.
 For the use case \emph{Searching and booking a room} a use case specification was created. The specification is shown in \tablename~\ref{tab:usecasespec}. Some aspects of this use case specification will be further elaborated on.
 
-\begin{table}[tp]
+\begin{table}[htp]
 	\centering
 	\begin{tabular}{|l|l|}
 		\hline
