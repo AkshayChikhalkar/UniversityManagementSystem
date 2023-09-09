@@ -103,7 +103,30 @@ Additionally, rooms might have a display, which shows the room's schedule and av
 
 To further describe the functionality of the URMS a specific business process should be examined. This business process describes a student booking and using a room. The business process according to Business Process Model and Notation (BPMN) is shown in \figurename~\ref{fig:bpmn_1}-\ref{fig:bpmn_2}
 
-% TODO BPMN description
+The Business Process is triggered, when a student needs a room at the university.
+The student accesses the URMS and searches for a room, either by entering a room number or by requesting specific room properties like size or furniture.
+The URMS receives the search query and list of rooms fulfilling the query.
+The student now has to decide, if one of the listed rooms fulfills their requirements. If that is not the case, the business process ends prematurely.
+
+If a room in the returned list satisfies the students requirements, the student selects the specific room and books it.
+The booking is handled by the URMS by updating the booking status of the selected room and sending a confirmation to the student.
+
+After booking the room, the student navigates to the room.
+If the student knows the direction to the room, they can move to the room without using the URMS.
+Alternatively, the student can request navigation instructions to the room. The URMS generates the instructions, which can be used by the student to move to the booked room.
+
+After reaching the room, the student tries to unlock the room by scanning their student id on the electronic lock of the room.
+The URMS checks, if the student has access to the room. As the student booked the room beforehand, they have access and the electronic lock of the room is unlocked.
+The student can enter the room and start working.
+If the room has a status display, the room is now shown to be occupied.
+
+There are three possibilities, how the booking ends.
+The first possibility is that the student finished their work, leaves the room and checks out via the URMS.
+There is also the possibility, that the student leaves the room, but forgets to check out via the system. For this reason the system checks in an hourly interval, whether there are still people inside the room. This check is realized through the movement sensors built into the room. If no people are registered inside the room, the system will behave as if the student checked out.
+The third possibility is that the room is booked for another event like a lecture.
+Five minutes before the other booking starts, the student is notified, that they should leave the room and check out. After receiving the notification, the student stops their work, leaves the room and checks out.
+
+The business process ends with the URMS updating the booking status the room, locking the room and potentially updating the occupancy status on the room display.
 
 \section{Use cases and user stories}
 
