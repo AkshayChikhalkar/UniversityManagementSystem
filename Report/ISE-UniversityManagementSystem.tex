@@ -291,10 +291,17 @@ Currently, there are developments on models with the specific task to generate s
 
 %%%%%%%% Domain Model (Akshay)%%%%%%%%%
 \section{Domain model}
-A domain model is a conceptual framework utilized in software engineering to encapsulate the fundamental elements comprising a particular problem domain \cite{larman2012applying}. It involves creating a visual or diagrammatic representation that outlines the essential entities, their attributes, interconnections, and governing principles within the domain. This model is instrumental in fostering a comprehensive understanding among diverse stakeholders, including developers, designers, and domain experts \cite{fowler2004uml}. It involves defining entities like``Customer'', ``Product'' or ``Order'', detailing their characteristics and the relationships that bind them. By delineating associations, constraints, and business rules, a domain model ensures that the software system mirrors the intricacies of the real-world context it aims to address. Typically illustrated through UML class diagrams, domain models facilitate effective communication and serve as a foundation for crafting software solutions aligned with the domain's intricacies and requirements \cite{booch1994oo}.
+	A domain model is a conceptual framework utilized in software engineering to encapsulate the fundamental elements comprising a particular problem domain \cite{larman2012applying}. It involves creating a visual or diagrammatic representation that outlines the essential entities, their attributes, interconnections, and governing principles within the domain. This model plays important role in nurturing in fostering a comprehensive understanding among diverse stakeholders, including developers, designers, and domain experts \cite{fowler2004uml}. It also involves defining entities like ``Customer'', ``Product'' or ``Order'', detailing their characteristics and the relationships that bind them. By delineating associations, constraints, and business rules, a domain model ensures that the software system mirrors the intricacies of the real-world context it aims to address. Typically illustrated through UML class diagrams, domain models facilitate effective communication and serve as a foundation for crafting software solutions aligned with the domain's intricacies and requirements \cite{booch1994oo}.
 
-\subsection{Conceptual classes}
-	The conceptual classes for the University Room Management System (URMS) are shown in \tablename~\ref{tab:conceptualclasses} below.
+	The domain model helps in the pragmatic understanding of the domain. It involves key concepts such as nomenclature, which bridge the gap between domain experts, software developers and end users. Naming entities in a linguistic manner or relatable way helps to relate the system better to the real world, understand programming logic, track changes and maintain the system. Building a domain model involves, finding conceptual classes, drawing class diagrams adding associations which are as follows:
+
+
+
+\subsection{Conceptual classes} \label{sec:conceptualclasses}
+	The conceptual classes are abstract representations of real-world entities or concepts within a specific problem domain. These classes serve as a fundamental building block for creating software systems that accurately model and interact with the entities, attributes, and behaviors present in that domain\footnote{https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/tutorials/oop}.
+
+
+	The conceptual classes are based on the most important entities in the system (physical or imaginary), goal (e.g. ``Booking''), standard categories (e.g. ``User'') and the system's environment (e.g. ``Place''). This also includes linguistic analysis of the use cases \& business processes, additional documents if any, and expert knowledge. Considering the University Room Management System, the conceptual classes are identified as in section~\ref{sec:classes}.
 
 	\begin{table}[h]
 		\centering
@@ -352,7 +359,7 @@ A domain model is a conceptual framework utilized in software engineering to enc
 	%%%%%% Need to review %%%% @akshay
 
 
-	The conceptual classes help to clarify how different elements interact within the system. These conceptual classes provide a way to categorize the key aspects of the system. The system's ``business transactions'' involve actions like making room reservations or bookings. Each transaction is further detailed through ``transaction line items,'' which specify aspects such as the timeframe for a room reservation. The ``product/service'' category encompasses items like rooms and navigation instructions, while ``actors'' refers to the different individuals who interact with the system, such as students, professors, guests, and university staff.
+	The conceptual classes provide a way to categorize the key aspects of the system. The system's ``business transactions'' involve actions like making room reservations or bookings. Each transaction is further detailed through ``transaction line items,'' which specify aspects such as the timestamp for a room reservation. The ``product/service'' category encompasses items like rooms and navigation instructions, while ``actors'' refers to the different individuals who interact with the system, such as students, professors, guests, and university staff.
 	
 	``Place'' pertains to relevant locations, including the university campus and the user interface of the system itself. Events like bookings are tracked under ``events,'' while ``physical objects'' encompass tangible items like rooms, buildings, and sensors.
 	
@@ -361,7 +368,7 @@ A domain model is a conceptual framework utilized in software engineering to enc
 	``Records'' represent the detailed information about bookings made within the system. ``Schedules/manuals'' involve information related to room schedules or guidelines. These conceptual classes help paint a comprehensive picture of how the University Room Management System operates and how its various components fit together.
 
 \subsection{Class diagram}
-	The class diagram illustrates the structure and relationship among classes in the system. The university room management system includes a total of 13 classes which are shown in \figurename~\ref{fig:classdiagram} below.
+	The class diagram illustrates the structure and relationship among classes in the system. To build the domain class diagram we used previously identified conceptual classes from section~\ref{sec:conceptualclasses}. The university room management system includes a total of 13 classes which are shown in \figurename~\ref{fig:classdiagram} below.
 
 	\begin{figure}[H]
 		\centering
@@ -370,11 +377,11 @@ A domain model is a conceptual framework utilized in software engineering to enc
 		\label{fig:classdiagram}
 	\end{figure}
 
-	\subsubsection*{Classes}
+	\subsubsection*{Classes} \label{sec:classes}
 		The classes are an amalgamation of physical objects and software components. The classes are described below:
 		Movement sensor: The movement sensor is a physical object that is used to detect the presence of a person in the room. It is connected to the room display and the door lock through the system (Room). At least one movement sensor is present in each room and connected to the class ``Room'' in a many-to-one association.
 		
-		Display: The display is a physical object that displays the room schedule and other booking information. In this system we consider one or more than one display per room and connected to the class ``Room'' in one-to-many association.
+		Display: The display is a physical object that displays the room schedule and other booking information. In this system we consider one or more than one display per room and connected to the class ``Room'' in one-to-one or none-to-one association.
 
 		Lock: The lock is again a physical object that is used to lock and unlock the room. In this system, we consider one lock per room and connected to the class ``Room'' in one-to-one association. The class ``Lock'' has one attribute ``Battery Level'' which is used to check the status of the Battery and helps to keep track of maintenance cycles.
 
@@ -390,7 +397,7 @@ A domain model is a conceptual framework utilized in software engineering to enc
 
 		User: The class ``User'' is a master class for all the users in the system. It is associated with the class ``Navigation Instructions'' in a one-to-many (1 to *) association.
 
-		Room: The class ``Room'' is a software component that is used to represent the physical room. It is associated with the classes ``Booking'', ``Navigation Instructions'', ``Display'', ``Lock'' (1 to 1), ``Movement Sensor'' and ``Booking'' in one-to-many (1 to *) association. ``Room'' contains a total of 6 attributes which are described below:
+		Room: The class ``Room'' is a software component that is used to represent the physical room. It is associated with the classes ``Booking'', ``Navigation Instructions'', ``Display'' (1 to 1 or 1 to 0), ``Lock'' (1 to 1), ``Movement Sensor'' and ``Booking'' in one-to-many (1 to *) association. ``Room'' contains a total of 6 attributes which are described below:
 		``Room Number'': The attribute ``Room Number'' is used to identify the room uniquely. It is a primary key for the class ``Room''.
 		``Capacity'': The attribute ``Room Capacity'' is used to identify the capacity of the room or the number of people it can fit.
 		``Room Size'': The attribute ``Room Size'' is used to identify the size of the room in square meters.
