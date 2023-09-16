@@ -322,7 +322,7 @@ Currently, there are developments on models with the specific task to generate s
 	The conceptual classes are abstract representations of real-world entities or concepts within a specific problem domain. These classes serve as a fundamental building block for creating software systems that accurately model and interact with the entities, attributes, and behaviors present in that domain\footnote{https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/tutorials/oop}.
 
 
-	The conceptual classes are based on the most important entities in the system (physical or imaginary), goal (e.g. ``Booking''), standard categories (e.g. ``User'') and the system's environment (e.g. ``Place''). This also includes linguistic analysis of the use cases \& business processes, additional documents if any, and expert knowledge. Considering the University Room Management System, the conceptual classes are identified as in section~\ref{sec:classes}.
+	The conceptual classes are based on the most important entities in the system (physical or imaginary), goals (e.g. ``Booking''), standard categories (e.g. ``User''), and the system's environment (e.g. ``Place''). This also includes linguistic analysis of the use cases \& business processes, additional documents if any, and expert knowledge. Considering the University Room Management System, the conceptual classes are identified as in \tablename~\ref{tab:conceptualclasses}.
 
 	\begin{table}[h]
 		\centering
@@ -380,7 +380,8 @@ Currently, there are developments on models with the specific task to generate s
 	%%%%%% Need to review %%%% @akshay
 
 
-	The conceptual classes provide a way to categorize the key aspects of the system. The system's ``business transactions'' involve actions like making room reservations or bookings. Each transaction is further detailed through ``transaction line items,'' which specify aspects such as the timestamp for a room reservation. The ``product/service'' category encompasses items like rooms and navigation instructions, while ``actors'' refers to the different individuals who interact with the system, such as students, professors, guests, and university staff.
+	The conceptual classes were identified by analyzing following categories:	
+	The system's ``business transactions'' involve actions like making room reservations or bookings. Each transaction is further detailed through ``transaction line items,'' which specify aspects such as the timestamp for a room reservation. The ``product/service'' category encompasses items like rooms and navigation instructions, while ``actors'' refers to the different individuals who interact with the system, such as students, professors, guests, and university staff.
 	
 	``Place'' pertains to relevant locations, including the university campus and the user interface of the system itself. Events like bookings are tracked under ``events,'' while ``physical objects'' encompass tangible items like rooms, buildings, and sensors.
 	
@@ -403,21 +404,22 @@ Currently, there are developments on models with the specific task to generate s
 		
 		Movement sensor: The movement sensor is a physical object that is used to detect the presence of a person in the room. It is connected to the room display and the door lock through the system (Room). At least one movement sensor is present in each room and connected to the class ``Room'' in a many-to-one association.
 		
-		Display: The display is a physical object that displays the room schedule and other booking information. In this system we consider one or more than one display per room and connected to the class ``Room'' in one-to-one or none-to-one association.
+		Display: The display is a physical object that displays the room schedule and other booking information. In this system we consider one or no display per room and connected to the class ``Room'' in one-to-one or none-to-one association.
 
 		Lock: The lock is again a physical object that is used to lock and unlock the room. In this system, we consider one lock per room and connected to the class ``Room'' in one-to-one association. The class ``Lock'' has one attribute ``Battery Level'' which is used to check the status of the Battery and helps to keep track of maintenance cycles.
 
-		Navigation Instructions: The navigation instructions are a service which is used to provide directions or visual insight to the user. Navigation instructions can be invoked by the system itself or by the user. This can be achieved by requesting navigation instructions at the time of booking or by accessing the navigation service and searching for the room number. The class ``Navigation Instructions'' has one attribute ``Type of instruction'' which defines whether instructions are requested in the building schematics or maps form. It is associated with the class ``Room'' and ``User'' in a many-to-one association.
+		Navigation Instructions: The navigation instructions are a service which is used to provide directions or visual insight to the user. Navigation instructions can be invoked by the system itself or by the user. This can be achieved by requesting navigation instructions at the time of booking or by accessing the navigation service and searching for the room number. The class ``Navigation Instructions'' has one attribute ``Type of instruction'' which defines whether instructions are requested in the building schematics or maps form. It is associated with the class ``Room'' and ``User'' in a many-to-one association. The navigation instructions reference the ``Room'', where the instructions lead to and the ``User'', who requested the instructions.
 
 		Schedule: The class ``Schedule'' holds the schedule metadata about the lectures according to the scheduler. This schedule can be referred to by the user at the time of booking to create recurring room reservations. The attribute ``List of dates/times'' returns all the days and times of the week when the lecture is scheduled. The class ``Schedule'' is associated with the class ``Booking'' in one-to-many (0...1 to *) association.
 
-		Booking: The class ``Booking'' holds the booking metadata about the room reservations. The attributes ``Start Time'' and ``End Time'' returns the start and end time of the booking. It invokes class ``Schedule'' to get a lecture schedule if required. The class ``Booking'' is associated with the class ``Room'', ``Schedule'' and ``Registered User'' in many-to-one association.
+		Booking: The class ``Booking'' holds the booking metadata about the room reservations. The attributes ``Start Time'' and ``End Time'' returns the start and end time of the booking. It refers class ``Schedule'' to get a lecture schedule if it is recurring booking. The class ``Booking'' is associated with the class ``Room'', ``Schedule'' and ``Registered User'' in many-to-one association. The class ``Room'' is also associated with the class ``Student'' in one-to-one (1 to 1) and classes ``Employee'' \& ``Professors'' in one-to-many (1 to *).
 
-		Registered User: The class ``Registered User'' is a master class for university students, professors and other university staff. It means these users are authenticated via valid student or employee ID. The classes ``Student'', ``Professors'' and ``Employee'' are inherited from the class ``Registered User'' and associated with the class ``Booking'' in a one-to-many (1 to *) association.
+		User: The class ``User'' is a master class for all the users in the system. It is associated with the class ``Navigation Instructions'' in a one-to-many (1 to *) association.
+
+		Registered User: The class ``Registered User'' is a master class for university students, professors and other university staff. It means these users are authenticated via valid student or employee ID. The classes ``Student'', ``Professors'' and ``Employee'' are inherited from the class ``Registered User'' and associated with the class ``Booking'' in a one-to-many (1 to *) association for each of their booking.
 
 		Guest: The class ``Guest'' is a user who is not registered in the system. It is inherited from the class ``User'' and has limited privileges in the system such as requesting navigational instructions.
 
-		User: The class ``User'' is a master class for all the users in the system. It is associated with the class ``Navigation Instructions'' in a one-to-many (1 to *) association.
 
 		Room: The class ``Room'' is a software component that is used to represent the physical room. It is associated with the classes ``Booking'', ``Navigation Instructions'', ``Display'' (1 to 1 or 1 to 0), ``Lock'' (1 to 1), ``Movement Sensor'' and ``Booking'' in one-to-many (1 to *) association. ``Room'' contains a total of 6 attributes which are described below:
 		``Room Number'': The attribute ``Room Number'' is used to identify the room uniquely. It is a primary key for the class ``Room''.
@@ -430,7 +432,7 @@ Currently, there are developments on models with the specific task to generate s
 
 %%%%%%%% System Architecture (Akshay)%%%%%%%%%
 \section{System architecture}
-	System architecture serves as the foundational blueprint for the design and operation of intricate systems. It encompasses the configuration of components, their interactions, and the pathways through which data flows to accomplish specified objectives \cite{steen2007distributed}. A well-organised architecture promotes modularity, facilitating efficient development and maintenance by compartmentalising the system into manageable modules. Furthermore, it enhances scalability by accommodating growth and demands without disrupting the entire system \cite{kotseruba2016review}. With a focus on reliability, architecture minimises vulnerabilities by distributing tasks and implementing redundancy \cite{steen2007distributed}. By addressing performance, security, and interoperability, the architecture ensures a robust and adaptable system that can evolve over time whilst optimising resource utilisation. Essentially, system architecture constitutes the essential framework that underpins a system's efficiency, durability, and effectiveness in a dynamic technological landscape \cite{kotseruba2016review}. \figurename~\ref{fig:systemarchitecture} shows the system architecture of the University Room Management System.
+	System architecture serves as the foundational blueprint for the design and operation of intricate systems. It encompasses the configuration of components, their interactions, and the pathways through which data flows to accomplish specified objectives \cite{steen2007distributed}. A well-organized architecture promotes modularity, facilitating efficient development and maintenance by compartmentalizing the system into manageable modules. Furthermore, it enhances scalability by accommodating growth and demands without disrupting the entire system \cite{kotseruba2016review}. With a focus on reliability, a good architecture minimizes vulnerabilities by distributing tasks and implementing redundancy \cite{steen2007distributed}. By addressing performance, security, and interoperability, the architecture ensures a robust and adaptable system that can evolve over time whilst optimizing resource utilization. Essentially, system architecture constitutes the essential framework that underpins a system's efficiency, durability, and effectiveness in a dynamic technological landscape \cite{kotseruba2016review}. \figurename~\ref{fig:systemarchitecture} shows the system architecture we designed for the University Room Management System.
 
 
 	\begin{figure}[H]
@@ -440,14 +442,14 @@ Currently, there are developments on models with the specific task to generate s
 		\label{fig:systemarchitecture}
 	\end{figure}
 
-	The system is bifurcated into three parts, namely, Frontend, Backend, Database and Devices. The Front end is the user interface that is used to interact with the system. The Backend is the core of the system which is responsible for processing the user requests and generating the response. The Database is used to store the system data such as infrastructure metadata or user data. The Frontend and Backend are connected to each other via APIs. The Backend and Database are connected through a network firewall via a physical Ethernet connection. The Frontend and Database are not connected to each other directly but via Backend. 
+	The system is bifurcated into four parts, namely, Frontend, Backend, Database and Devices. The Front end is the user interface that is used to interact with the system. The Backend is the core of the system which is responsible for processing the user requests and generating the response. The Database is used to store the system data such as infrastructure metadata or user data. The Frontend and Backend are connected to each other via APIs. The Backend and Database are connected via a physical Ethernet connection. The Frontend and Database are not connected to each other directly but via Backend. 
 
-	The web server, business logic and database are hosted on different on-prim servers and connected to each other using a physical connection. As this server is locally deployed, all the processing takes place locally and no data is stored on the cloud.
+	The web server, business logic and database are hosted on different on-premises servers and connected to each other using a physical connection. As this server is locally deployed, all the processing takes place locally and no data is stored in the cloud.
 
-	\figurename~\ref{fig:systemarchitecture} shows multiple rooms, each equipped with devices such as a room display, door lock and movement sensor are connected to the local servers via wireless connection through a network Gateway and Rule Engine. Each device inside the room may use a different communication protocol (i.e. RF, WIFI, Zigbee, Bluetooth, etc.) To deal with all these different protocols, a Gateway is used to convert the data into a common format and connect to local servers. The Rule Engine is used to process the data and generate the response. The Gateway and Rule Engine are connected to each other via a physical Ethernet connection.
+	\figurename~\ref{fig:systemarchitecture} shows multiple rooms, each equipped with devices such as a room display, door lock and movement sensor. Each room connects the IoT devices through a wireless network Gateway.	Connections to the rooms and their components are managed by a Rule Engine. Each device inside the room may use a different communication protocol (i.e. RF, WIFI, Zigbee, Bluetooth, etc.) To deal with all these different protocols, a Gateway is used to convert the data into a common format and connect to local servers. The Rule Engine is used to process the data and generate the response. The Gateway and Rule Engine are connected to each other via a physical Ethernet connection.
 
 	Devices: 
-	IoT devices indicated in the system architecture are door locks, room displays and motion sensors. Each device and its nature is represented in the schematic using IoT Patterns. The IoT patterns are used to represent the IoT devices and their nature. The IoT patterns are shown in \tablename~\ref{tab:iotpatterns} below.
+	IoT devices indicated in the system architecture are door locks, room displays and motion sensors. Each device and its nature is represented in the schematic using IoT Patterns\footnote{http://www.internetofthingspatterns.com/patterns/}. The IoT patterns are used to represent the IoT devices and their nature. The IoT patterns are shown in \tablename~\ref{tab:iotpatterns} below.
 
 
 	\begin{table}[ht]
@@ -467,11 +469,11 @@ Currently, there are developments on models with the specific task to generate s
 		\label{tab:iotpatterns}
 	\end{table}
 
-	Door Lock: Each room has one door lock that is battery operated has sleep mode and wake-up mode. The only drawback of this is batteries need to be replaced once in a while. The lock has event-based sensing which means it will send the data only when the event occurs. The event in this case is when the door is locked or unlocked or on system request.
+	Door Lock: Each room has one door lock that is battery operated. The only drawback of this is batteries need to be replaced once in a while. The locks are usually sleeping devices and activate based on events. The lock has event-based sensing which means it will send the data only when the event occurs. The event in this case is when the door is locked or unlocked or on system request.
 
 	Room Display: The displays are connected to an active power grid as it is always on and requires a continues power supply. The display shows the booking schedule of the respective room.
 
-	Motion Sensor: The motion is again always on the device, hence connected to the power grid. The motion sensor is scheduled-based sensing which means it will send the data periodically as per schedule. The event in this case is when the motion is detected in the room.
+	Motion Sensor: The motion sensor is again always on the device and connected to the power grid. The motion sensor uses scheduled-based sensing which means it will send the data periodically as per schedule.
 
 	All rooms can be interconnected through a network switch to local servers and subsequently linked to the front end via APIs. To safeguard against external threats, a firewall filters incoming and outgoing traffic. This firewall is connected to the network switch via a physical Ethernet link.
 
