@@ -221,7 +221,7 @@ The process for this will likely be very similar to booking a single room. Showi
 
 \subsection{User stories}
 
-Following three user stories were formulated:
+The following three user stories were formulated:
 
 \begin{enumerate}
 	\item As a Student, I want to book a room, so that I have a place to work.
@@ -230,7 +230,7 @@ Following three user stories were formulated:
 \end{enumerate}
 
 A good practice is to formulate user stories according to the INVEST principle.
-This principle describes that a user story should be independent, negotiable, valuable, estimable, small and testable.
+This principle describes that a user story should be independent, negotiable, valuable, estimable, small and testable \cite{Buglione_2013}.
 User stories 1 and 2 were elaborated further and analyzed with regard to the INVEST principle.
 
 The first user story ``As a Student, I want to book a room, so that I have a place to work.'' is extended by following points:
@@ -300,7 +300,7 @@ While reading ChatGPT's answer the question arose, how the model would handle a 
 Thus, the model was prompted to write another user story according to the INVEST principle. The user story requested in this prompt was: ``As a University member, I want to use the Room Management System, because it will make life easier.''
 This user story is very broad and unspecific, such that it is neither estimable nor small. The user story also is not independent, as it focuses on the entire room management system at once.
 
-The answer of ChatGPT is disappointing, as it is argued that the given user story fulfills all aspects of INVEST. Especially statements like ``The user story has a focused scope'', or ``It focuses on the specific need [...] to utilize the Room Management System'' show that the problems of the user story are not detected by ChatGPT. The task to write the use case done according to the INVEST principle is done, but there is no plausibility check performed.
+The answer of ChatGPT is disappointing, as it is argued that the given user story fulfills all aspects of INVEST. Especially statements like ``The user story has a focused scope'', or ``It focuses on the specific need [...] to utilize the Room Management System'' show that the problems of the user story are not detected by ChatGPT. The task to write the use case according to the INVEST principle is done, but there are no plausibility check performed.
 
 Although the answers by ChatGPT are not completely correct, the amount of sensible output by the language model are quite impressive, especially if you consider the small amount of information given in the prompts.
 The answers of ChatGPT need to be checked for plausibility and cannot be used as is. But the generated use case specifications and user story elaborations can be used as a good starting point, which requires some manual fine-tuning by human designers. Using language models for initial specification drafts can probably decrease the required time for a system specification.
@@ -313,7 +313,7 @@ Currently, there are developments on models with the specific task to generate s
 
 %%%%%%%% Domain Model (Akshay)%%%%%%%%%
 \section{Domain model}
-	A domain model is a conceptual framework utilized in software engineering to encapsulate the fundamental elements comprising a particular problem domain \cite{larman2012applying}. It involves creating a visual or diagrammatic representation that outlines the essential entities, their attributes, interconnections, and governing principles within the domain. This model plays an important role in nurturing and fostering a comprehensive understanding among diverse stakeholders, including developers, designers, and domain experts \cite{fowler2004uml}. It also involves defining entities like ``Customer'', ``Product'' or ``Order'', detailing their characteristics and the relationships that bind them. By delineating associations, constraints, and business rules, a domain model ensures that the software system mirrors the intricacies of the real-world context it aims to address. Typically illustrated through Language (UML) class diagrams, domain models facilitate effective communication and serve as a foundation for crafting software solutions aligned with the domain's intricacies and requirements \cite{booch1994oo}.
+	A domain model is a conceptual framework utilized in software engineering to encapsulate the fundamental elements comprising a particular problem domain \cite{larman2012applying}. It involves creating a visual or diagrammatic representation that outlines the essential entities, their attributes, interconnections, and governing principles within the domain. This model plays an important role in nurturing and fostering a comprehensive understanding among diverse stakeholders, including developers, designers, and domain experts \cite{fowler2004uml}. It also involves defining entities like ``Customer'', ``Product'' or ``Order'', detailing their characteristics and the relationships that bind them. By delineating associations, constraints, and business rules, a domain model ensures that the software system mirrors the intricacies of the real-world context it aims to address. Typically illustrated through Unified Modeling Language (UML) class diagrams, domain models facilitate effective communication and serve as a foundation for crafting software solutions aligned with the domain's intricacies and requirements \cite{booch1994oo}.
 
 	The domain model helps in the pragmatic understanding of the domain. It involves key concepts such as nomenclature, which bridge the gap between domain experts, software developers and end users. Naming entities in a linguistic manner or relatable way helps to relate the system better to the real world, understand programming logic, track changes and maintain the system. Building a domain model involves, finding conceptual classes, drawing class diagrams adding associations which are as follows:
 
@@ -425,7 +425,7 @@ Currently, there are developments on models with the specific task to generate s
 		Room: The class ``Room'' is a software component that is used to represent the physical room. It is associated with the classes ``Booking'', ``Navigation Instructions'', ``Display'' (1 to 1 or 1 to 0), ``Lock'' (1 to 1), ``Movement Sensor'' and ``Booking'' in one-to-many (1 to *) association. ``Room'' contains a total of 6 attributes which are described below:\\
 		``Room Number'': The attribute ``Room Number'' is used to identify the room uniquely. It is a primary key for the class ``Room''.\\
 		``Capacity'': The attribute ``Room Capacity'' is used to identify the capacity of the room or the number of people it can fit.\\
-		``Room Size'': The attribute ``Room Size'' is used to identify the size of the room in square meters.
+		``Room Size'': The attribute ``Room Size'' is used to identify the size of the room in square meters.\\
 		``Category'': The attribute ``Category'' is used to identify the type of the room such as lecture room, seminar room, etc.\\
 		``Projector available'': The attribute ``Projector available'' is used to identify whether the room has a projector or not.\\
 		``Building'': The attribute ``Building'' is used to identify the building in which the room is located.
@@ -466,7 +466,7 @@ Currently, there are developments on models with the specific task to generate s
 			Schedule-Based Sensing             & \cincludegraphics[width=1cm]{Figures/schedule-based-sensing.png} \\ \hline
 			Device Gateway					   & \cincludegraphics[width=1cm]{Figures/device-gateway.png} \\ \hline
 		\end{tabular}
-		\caption{IoT Patterns\protect\footnote{http://www.internetofthingspatterns.com/patterns/}}
+		\caption[IoT Patterns]{IoT Patterns\footnotemark }
 		\label{tab:iotpatterns}
 	\end{table}
 
@@ -478,12 +478,13 @@ Currently, there are developments on models with the specific task to generate s
 
 	All rooms can be interconnected through a network switch to local servers and subsequently linked to the front end via APIs. To safeguard against external threats, a firewall filters incoming and outgoing traffic. This firewall is connected to the network switch via a physical Ethernet link.
 
-
 \section{Choosing an appropriate Software development process}
+
+\footnotetext{http://www.internetofthingspatterns.com/patterns/} % Footnote for the table
 
 Considering all the theoretical aspects that have been discussed in this paper, including a Business Process Model, Use Cases, User Stories, Domain Model, and the System Architecture, we are able to determine a suitable Software Development Process Model (SDPM) to develop the overall system. Choosing a Software Development Process Model is a critical step, as it determines the methodology of the practical part of the project.
 
-As defined by the IEEE, software engineering is the utilization of the systematic, disciplined, and quantitative approach to development and maintenance of software \cite{a3}. While developing a product at its finest shape is important, While developing a product at its finest shape is important, the process steps and methods that lead to it proved to be as important and critical to create a complete product. Such methods provide approaches and criteria to effectively organize tasks among teams and manage resources and other costs \cite{a4}. In this paper, we took into consideration four approaches. These include agile methods such as Extreme Programming (XP) and Scrum, in addition to the waterfall approach and spiral approach.
+As defined by the IEEE, software engineering is the utilization of the systematic, disciplined, and quantitative approach to development and maintenance of software \cite{a3}. While developing a product at its finest shape is important, the process steps and methods that lead to it proved to be as important and critical to create a complete product. Such methods provide approaches and criteria to effectively organize tasks among teams and manage resources and other costs \cite{a4}. In this paper, we took into consideration four approaches. These include agile methods such as Extreme Programming (XP) and Scrum, in addition to the waterfall approach and spiral approach.
 Agile approaches are a set of software development principles and practices. All agile software development methods build the software in iterations and incremental processes. The main goal of the agile methods is to reduce the resources needed in the software development process \cite{a4}. There are many types of agile methods and each of them have their own principles, roles, lifecycle, advantages, and disadvantages.
 
 
@@ -501,7 +502,7 @@ The main three phases in Scrum are:
 Extreme Programming is one of the early agile methods used. It was designed to solve problems with frequently changing requirements. It aims to reduce the cost of the changing requirements by replacing long development cycles with multiple short cycles. The XP Life cycle consist of multiple phases:
 
 \begin{itemize}
-	\item The exploration phase: where the customer is an essential part in the XP team and makes decisions alongside also.
+	\item The Exploration phase: where the customer is an essential part in the XP team and makes decisions alongside also.
 	\item The Planning phase: where the schedule is planned and determined.
 	\item The Iterations to release phase.
 	\item The Production phase: where testing and evaluating of the performance of the system is being done.
@@ -526,7 +527,7 @@ The common elements of the waterfalls model are Requirement gathering, System An
 %	\end{enumerate}
 %\end{multicols}
 
-Every step needs to be completed, validated, and documented as planned for the next step to start as it follows a strict and linear sequence of phases. For that, the waterfall model approach has become the fundamental basis for most software development standers in governments and industries \cite{a5}.
+Every step needs to be completed, validated, and documented as planned for the next step to start as it follows a strict and linear sequence of phases. For that, the waterfall model approach has become the fundamental basis for most software development in governments and industries \cite{a5}.
 \figurename~\ref{fig:waterfall} shows an example of the waterfall model.
 
 \begin{figure}[htb]
@@ -589,7 +590,7 @@ The waterfall approach was not the perfect choice for our system, because the sy
 Moreover, the system also cannot always be easily split into small packets for scrum sprints.
 The fast start and increasingly long iterations of spiral approach are a good fit for the increasingly more complex URMS.
 
-The Spiral approach will be a valid option in this case to choose as our software development process because it is an incremental approach that grows with every completed phase. Moreover, it is a risk-driven approach with incremental iterations providing a prototype at every cycle. By evaluating alternative designs and utilizing the results from risk analysis we will be able to achieve a better result without being cost demanded and resources intensive.
+The Spiral approach will be a valid option in this case to choose as our software development process because it is an incremental approach that grows with every completed phase. Additionally, it is a risk-driven approach with incremental iterations providing a prototype at every cycle. By evaluating alternative designs and utilizing the results from risk analysis we will be able to achieve a better result without being cost demanded and resources intensive.
 
 \section{Conclusion}
 
